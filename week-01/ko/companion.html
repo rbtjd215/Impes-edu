@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <title>1주차 한국어 스터디 노트 · RedHarness</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--surface:#17131b;--line:#34303a;--fg:#eceaee;--muted:#bcb6c1;--red:#ff4d67;--green:#61d095}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 90% 0,rgba(221,42,69,.16),transparent 33rem),var(--bg);color:var(--fg);font:17px/1.75 system-ui,"Segoe UI","Noto Sans KR",sans-serif;word-break:keep-all}
+    .shell{width:min(860px,calc(100% - 36px));margin:auto;padding:35px 0 80px}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}nav a,.button{display:inline-block;border:1px solid var(--line);padding:8px 13px;color:var(--fg);text-decoration:none}a{color:#ffa6b3}a:hover,a:focus-visible{color:#fff;border-color:var(--red)}
+    .eyebrow{font:700 12px/1.4 ui-monospace,monospace;letter-spacing:.17em;color:var(--red)}h1{font-size:clamp(2.6rem,7vw,4.7rem);line-height:1.08;margin:12px 0 18px;letter-spacing:-.04em}h2{font-size:1.85rem;line-height:1.3;margin:55px 0 16px;border-top:1px solid var(--line);padding-top:25px}h3{font-size:1.25rem;margin:25px 0 8px}.lead{font-size:1.18rem;color:var(--muted);max-width:720px}p,li{max-width:760px}li{margin:5px 0}strong{color:#fff}blockquote{margin:20px 0;padding:10px 20px;border-left:4px solid var(--red);background:var(--surface)}
+    .box{padding:18px 22px;background:var(--surface);border:1px solid var(--line);margin:18px 0}.box p:first-child{margin-top:0}.box p:last-child{margin-bottom:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#111015;border:1px solid var(--line);padding:18px;font:14px/1.7 ui-monospace,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:var(--surface)}td:first-child{font-weight:700;color:#fff}code{font:0.9em ui-monospace,Consolas,monospace;color:var(--green)}
+    @media(max-width:600px){body{font-size:16px}.table-wrap{overflow-x:auto}table{min-width:550px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav aria-label="1주차 자료"><a href="../">← 1주차 자료</a><a href="./">한국어 슬라이드</a><a href="../en/companion.html" lang="en">English notes</a><a href="../../">교육 홈</a></nav>
+    <p class="eyebrow">REDHARNESS · WEEK 01 · STUDENT COMPANION</p>
+    <h1>AI 에이전트와<br>하네스 엔지니어링</h1>
+    <p class="lead">1주차 한국어 슬라이드를 혼자 복습하기 위한 설명 자료입니다. 발표 대본이 아니며, 핵심 용어·프로젝트 흐름·증거·안전 규칙을 자기 속도로 다시 확인할 수 있습니다.</p>
+
+    <h2>복습 후 이해해야 할 것</h2>
+    <ol><li>LLM과 AI 에이전트의 차이</li><li>프롬프트와 컨텍스트의 차이</li><li>하네스가 통제하는 것</li><li>AI의 주장을 뒷받침하는 증거와 그렇지 않은 정보의 구분</li><li>Dispatcher → Specialist → Oracle → Reporter 흐름</li><li>RedHarness가 실행될 수 있는 범위</li></ol>
+
+    <h2>학기 공통 사례: RH-CASE-01</h2>
+    <blockquote>허가된 로컬 로그인 실습 환경에 수업용 계정으로 요청을 보내고, 실제 응답에서 지정된 완료 문자열을 확인한 뒤 실행 증거와 상태를 기록합니다.</blockquote>
+    <p>이번 학기에는 이 교육용 사례를 계속 이어서 사용합니다. 1·2주차에는 Claude, API, 코드, 보안 도구를 직접 실행하지 않고 준비된 요청·응답·로그를 읽습니다. 3주차부터 기준 실행, 공통 계약, 실제 도구 호출, 검증과 통합을 한 층씩 추가합니다.</p>
+
+    <h2>전체 흐름</h2>
+    <pre>과제 입력 → Dispatcher → 전문 모듈 A 또는 B
+          → 허용된 도구 → Oracle → Reporter</pre>
+    <ul><li><strong>과제 입력:</strong> 허가된 대상, 목표, 제한과 완료 조건을 정의합니다.</li><li><strong>Dispatcher:</strong> 과제에 맞는 전문 모듈을 선택합니다.</li><li><strong>전문 모듈 A 또는 B:</strong> 허용 범위 안에서 행동을 고르고 승인된 도구를 사용합니다.</li><li><strong>Oracle:</strong> 원본 증거가 주장을 뒷받침하는지 확인합니다.</li><li><strong>Reporter:</strong> 상태, 증거, 오류와 다음 행동을 기록합니다.</li><li><strong>공통 하네스:</strong> 전체 흐름의 계약, 컨텍스트, 권한, 제한, 상태, 검증과 로그를 관리합니다.</li></ul>
+
+    <h2>핵심 용어</h2>
+    <div class="table-wrap"><table><thead><tr><th>용어</th><th>쉬운 정의</th><th>RH-CASE-01에서의 예</th></tr></thead><tbody>
+      <tr><td>LLM</td><td>현재 입력을 바탕으로 답이나 행동 후보를 생성하는 언어 모델</td><td>로그인 응답을 어떻게 살펴볼지 제안</td></tr>
+      <tr><td>프롬프트</td><td>모델에 전달하는 질문 또는 작업 지시</td><td>역할, 목표, 제약과 완료 조건을 정의</td></tr>
+      <tr><td>컨텍스트</td><td>현재 판단에 사용할 수 있는 모든 정보</td><td>대상, 이전 응답, 규칙과 남은 요청 횟수</td></tr>
+      <tr><td>도구</td><td>모델의 텍스트 밖에서 실제 행동을 수행하는 기능</td><td>허가된 로컬 실습 환경에 요청 전송</td></tr>
+      <tr><td>MCP</td><td>AI 애플리케이션을 도구와 데이터에 연결하는 공통 프로토콜</td><td>승인된 요청 도구를 연결하는 방법 중 하나</td></tr>
+      <tr><td>에이전트</td><td>목표를 향해 행동을 선택하고 도구를 사용하며 결과를 관찰하는 시스템</td><td>요청 전송, 응답 확인, 다음 안전한 행동 선택</td></tr>
+      <tr><td>하네스</td><td>정보, 도구, 제한, 검증과 기록을 관리하는 실행 구조</td><td>허용 대상, 요청 한도, Oracle 검사와 로그 강제</td></tr>
+      <tr><td>증거</td><td>다른 사람이 직접 확인할 수 있는 원본 정보</td><td>요청, 응답, 완료 문자열 위치와 재현 절차</td></tr>
+    </tbody></table></div>
+
+    <h2>헷갈리기 쉬운 차이</h2>
+    <h3>LLM과 에이전트</h3>
+    <pre>LLM:      “이렇게 하면 됩니다.”라고 방법을 제안합니다.
+에이전트: 허용된 도구로 실행하고 결과를 관찰한 뒤
+          다음 행동을 고릅니다.</pre>
+    <p>LLM은 에이전트 안에서 판단을 돕는 구성요소가 될 수 있습니다. 에이전트는 여기에 도구, 상태, 반복과 중단 조건을 더한 더 큰 시스템입니다.</p>
+    <h3>프롬프트와 컨텍스트</h3>
+    <p><strong>프롬프트</strong>는 현재 질문이나 작업 지시입니다. <strong>컨텍스트</strong>는 이번 판단에서 모델이 볼 수 있는 모든 정보입니다. 프롬프트는 컨텍스트의 일부이지만 두 용어는 같은 뜻이 아닙니다.</p>
+    <h3>도구, MCP, 에이전트</h3>
+    <p><strong>도구</strong>는 실제 행동을 수행합니다. <strong>MCP</strong>는 도구와 데이터를 연결하는 방식입니다. <strong>에이전트</strong>는 목표, 판단, 행동, 관찰과 중단을 결합합니다. 도구를 MCP로 연결했다고 해서 자동으로 에이전트가 만들어지는 것은 아닙니다.</p>
+    <h3>에이전트와 하네스</h3>
+    <p><strong>에이전트</strong>는 목표를 추적하며 다음 행동을 결정합니다. <strong>하네스</strong>는 사용할 수 있는 정보와 도구, 실행 제한, 검증 방법과 기록 방식을 통제합니다. 자료마다 경계를 다르게 설명할 수 있지만 RedHarness에서는 팀 책임을 분명히 나누기 위해 이 구분을 사용합니다.</p>
+
+    <h2>좋은 프롬프트의 네 요소</h2>
+    <div class="table-wrap"><table><thead><tr><th>요소</th><th>확인 질문</th></tr></thead><tbody><tr><td>역할</td><td>어떤 책임과 관점으로 작업해야 하는가?</td></tr><tr><td>목표</td><td>무엇을 완료해야 하는가?</td></tr><tr><td>제약</td><td>어떤 범위·도구·행동·형식을 허용하거나 금지하는가?</td></tr><tr><td>완료 조건</td><td>어떤 증거가 있어야 완료라고 판단하는가?</td></tr></tbody></table></div>
+    <p>모호한 요청: <code>로그인 문제를 확인해 줘.</code></p>
+    <div class="box"><p><strong>개선한 요청:</strong> 허가된 로컬 로그인 실습 환경에 수업용 계정으로 요청을 보냅니다. 응답에서 지정된 완료 문자열을 찾고 원본 응답과 정확한 위치를 제시합니다. 문자열을 확인할 수 없다면 PASS를 추측하지 않고 UNKNOWN 또는 FAIL의 근거를 기록합니다.</p></div>
+
+    <h2>증거와 상태</h2>
+    <div class="table-wrap"><table><thead><tr><th>상태</th><th>의미</th></tr></thead><tbody><tr><td>PASS</td><td>외부에서 확인 가능한 성공 증거가 있음</td></tr><tr><td>FAIL</td><td>실행했고 실패를 보여 주는 증거가 있음</td></tr><tr><td>UNKNOWN</td><td>실행했지만 판정할 증거가 부족함</td></tr><tr><td>NOT_RUN</td><td>실제로 실행하지 않음</td></tr></tbody></table></div>
+    <p>“테스트에 성공했습니다”는 문장일 뿐입니다. 신뢰할 수 있는 결과는 다른 사람이 확인할 수 있는 원본을 가리켜야 합니다. 다음은 <strong>개념 예시</strong>이며 실제 1주차 실행 결과가 아닙니다.</p>
+    <pre>{
+  "status": "PASS",
+  "claim": "지정된 완료 문자열 확인",
+  "evidence": ["request.txt", "response.txt", "reproduce.md"],
+  "scope": "local-education-lab",
+  "uncertainty": [],
+  "next_action": "보고서 작성"
+}</pre>
+
+    <h2>팀 역할</h2>
+    <div class="table-wrap"><table><thead><tr><th>역할</th><th>주요 책임</th></tr></thead><tbody><tr><td>통합·교육·Dispatcher</td><td>공통 구조 유지, 작업 분배, 모듈 연결</td></tr><tr><td>전문 모듈 A</td><td>한 분야를 입력부터 판정과 로그까지 완주</td></tr><tr><td>전문 모듈 B</td><td>다른 분야를 처리하고 증거 또는 명확한 실패 로그 반환</td></tr><tr><td>Oracle</td><td>주장과 원본 증거에 판정 규칙 적용</td></tr><tr><td>Reporter</td><td>없는 사실을 만들지 않고 재현 가능한 기록 작성</td></tr></tbody></table></div>
+    <p>두 명으로 구성된 각 팀은 개인별 주 책임을 나눕니다. 한 명은 프롬프트·판단 전략 또는 판정 규칙을, 다른 한 명은 도구 실행·실패 로그 또는 결과 보고를 맡습니다. 같은 입력으로 짝이 실행하거나 검토해야 팀 작업을 완료로 인정합니다.</p>
+
+    <h2>안전한 실행 범위</h2>
+    <p>RedHarness는 우리가 운영하는 로컬 교육용 실습 환경에서, 수업이 명시적으로 허가한 주소·포트·기능과 정해진 요청 횟수·시간·도구 제한 안에서만 실행할 수 있습니다.</p>
+    <p>학교 시스템, 검색으로 찾은 공개 웹사이트, 허용 목록 밖의 대상, 실제 계정·개인정보·파괴적 결과가 관련된 시스템에는 자동 실행하면 안 됩니다. PortSwigger Web Security Academy를 포함한 외부 교육 사이트도 별도 서면 허가가 확인되기 전에는 사람의 학습 용도로만 사용합니다.</p>
+    <div class="box"><p><strong>공개적으로 접속할 수 있다는 사실은 자동 테스트가 허가됐다는 뜻이 아닙니다.</strong></p></div>
+
+    <h2>스스로 확인하기</h2>
+    <ol><li>기본 LLM 호출과 달리 에이전트가 추가로 할 수 있는 것은 무엇인가요?</li><li>프롬프트가 컨텍스트의 일부인 이유는 무엇인가요?</li><li>MCP로 도구를 연결한 것만으로 에이전트가 되지 않는 이유는 무엇인가요?</li><li>최대 요청 횟수 10회를 강제해야 하는 층은 어디인가요?</li><li>AI의 “완료했습니다”라는 문장이 성공 증거가 아닌 이유는 무엇인가요?</li><li>UNKNOWN과 NOT_RUN은 어떻게 다른가요?</li><li>원본 응답 증거를 확인하는 구성요소는 무엇인가요?</li><li>RedHarness가 자동으로 접근할 수 있는 대상은 무엇인가요?</li></ol>
+
+    <h2>2주차 준비</h2>
+    <p>교수가 제공하는 RH-CASE-01 정적 요청·응답 예시에서 대상, 사용자가 전달한 값, 결과, 성공을 뒷받침할 수 있는 증거를 표시합니다. 이해하지 못한 단어 두 개를 적고, “로그인 문제를 확인해 줘”에서 빠진 역할·목표·제약·완료 조건을 찾습니다. 관심 있는 모듈 또는 취약점 분야 1·2순위와 선호 업무도 정합니다.</p>
+    <p>아직 모든 HTTP 용어를 알 필요는 없습니다. 2주차에는 같은 로그인 요청을 메서드, 주소, 헤더와 본문으로 나누어 살펴봅니다.</p>
+    <p><a class="button" href="./">한국어 슬라이드로 돌아가기 ↑</a></p>
+  </main>
+</body>
+</html>
