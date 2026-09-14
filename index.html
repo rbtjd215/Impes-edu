@@ -137,6 +137,26 @@
 
     .week:not(.available) { cursor: default; }
 
+    .english-materials {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
+      margin-top: 20px;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      background: rgba(18, 16, 22, .76);
+    }
+
+    .english-materials strong { margin-right: auto; }
+    .english-materials a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+    .english-materials a:hover,
+    .english-materials a:focus-visible { color: var(--accent-bright); }
+
     .week-number {
       display: block;
       margin-bottom: 24px;
@@ -253,6 +273,12 @@
         <span class="week-meta"><span class="dot"></span><span>준비 중</span></span>
       </a>
     </section>
+
+    <aside class="english-materials" aria-label="Week 1 English materials">
+      <strong>Week 01 · English materials</strong>
+      <a href="./week-01/en/">English slides · 35 pages</a>
+      <a href="./week-01/en/companion.html">English study companion</a>
+    </aside>
 
     <footer>
       <p>월요일 17:30 · 회당 90분</p>

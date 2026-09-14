@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <title>Week 1 English Companion · RedHarness</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--surface:#17131b;--line:#34303a;--fg:#eceaee;--muted:#bcb6c1;--red:#ff4d67;--green:#61d095}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 90% 0,rgba(221,42,69,.16),transparent 33rem),var(--bg);color:var(--fg);font:17px/1.7 system-ui,"Segoe UI",sans-serif}
+    .shell{width:min(860px,calc(100% - 36px));margin:auto;padding:35px 0 80px}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}nav a,.button{display:inline-block;border:1px solid var(--line);padding:8px 13px;color:var(--fg);text-decoration:none}a{color:#ffa6b3}a:hover,a:focus-visible{color:#fff;border-color:var(--red)}
+    .eyebrow{font:700 12px/1.4 ui-monospace,monospace;letter-spacing:.17em;color:var(--red)}h1{font-size:clamp(2.6rem,7vw,4.7rem);line-height:1.06;margin:12px 0 18px}h2{font-size:1.85rem;line-height:1.25;margin:55px 0 16px;border-top:1px solid var(--line);padding-top:25px}h3{font-size:1.25rem;margin:25px 0 8px}.lead{font-size:1.18rem;color:var(--muted);max-width:720px}p,li{max-width:760px}li{margin:5px 0}strong{color:#fff}blockquote{margin:20px 0;padding:10px 20px;border-left:4px solid var(--red);background:var(--surface)}
+    .box{padding:18px 22px;background:var(--surface);border:1px solid var(--line);margin:18px 0}.box p:first-child{margin-top:0}.box p:last-child{margin-bottom:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#111015;border:1px solid var(--line);padding:18px;font:14px/1.6 ui-monospace,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:var(--surface)}td:first-child{font-weight:700;color:#fff}code{font:0.9em ui-monospace,Consolas,monospace;color:var(--green)}
+    @media(max-width:600px){body{font-size:16px}.table-wrap{overflow-x:auto}table{min-width:550px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav aria-label="Week 1 materials"><a href="./">← English slides</a><a href="../" lang="ko">한국어 슬라이드</a><a href="../../">Education dashboard</a></nav>
+    <p class="eyebrow">REDHARNESS · WEEK 01 · STUDENT COMPANION</p>
+    <h1>AI Agents &amp;<br>Harness Engineering</h1>
+    <p class="lead">A self-paced English reference for the Week 1 slides—not a presentation script. Review the terms, the project flow, evidence, and safety rules at your own speed.</p>
+
+    <h2>What you should understand</h2>
+    <ol><li>How an LLM differs from an AI agent.</li><li>How a prompt differs from context.</li><li>What a harness controls.</li><li>What evidence supports or does not support an AI's claim.</li><li>The Dispatcher → Specialist → Oracle → Reporter flow.</li><li>Where RedHarness is allowed to run.</li></ol>
+
+    <h2>Our semester case: RH-CASE-01</h2>
+    <blockquote>Send a request with a class account to an authorized local login lab, confirm the required completion string in the actual response, and record the execution evidence and status.</blockquote>
+    <p>We keep this educational case throughout the semester. In Weeks 1 and 2 we do <strong>not</strong> run Claude, APIs, code, or security tools. We study prepared requests, responses, and logs. From Week 3, we add baseline execution, the shared contract, real tool calls, verification, and integration one layer at a time.</p>
+
+    <h2>The complete flow</h2>
+    <pre>Task input → Dispatcher → Specialist Module A or B
+           → Approved tool → Oracle → Reporter</pre>
+    <ul><li><strong>Task input:</strong> the authorized target, goal, limits, and completion condition.</li><li><strong>Dispatcher:</strong> chooses the appropriate specialist.</li><li><strong>Specialist A or B:</strong> chooses actions and uses approved tools within scope.</li><li><strong>Oracle:</strong> checks whether original evidence supports the claim.</li><li><strong>Reporter:</strong> records status, evidence, errors, and next action.</li><li><strong>Shared harness:</strong> manages the contract, context, permissions, limits, state, verification, and logs.</li></ul>
+
+    <h2>Key terms</h2>
+    <div class="table-wrap"><table><thead><tr><th>Term</th><th>Simple definition</th><th>In RH-CASE-01</th></tr></thead><tbody>
+      <tr><td>LLM</td><td>Generates a response or candidate action from current input</td><td>Suggests how to examine the login response</td></tr>
+      <tr><td>Prompt</td><td>The question or task instruction sent to the model</td><td>Defines role, goal, constraints, and done condition</td></tr>
+      <tr><td>Context</td><td>All information available for the current decision</td><td>Target, previous response, rules, remaining requests</td></tr>
+      <tr><td>Tool</td><td>Performs an action outside the model's text</td><td>Sends a request to the approved local lab</td></tr>
+      <tr><td>MCP</td><td>A common protocol connecting AI apps to tools and data</td><td>One way to expose an approved request tool</td></tr>
+      <tr><td>Agent</td><td>Chooses actions, uses tools, observes results, and iterates toward a goal</td><td>Sends a request, reads the response, selects the next safe step</td></tr>
+      <tr><td>Harness</td><td>Manages information, tools, limits, verification, and records</td><td>Enforces the allowlist, request limit, Oracle check, and log</td></tr>
+      <tr><td>Evidence</td><td>Original information another person can inspect</td><td>Request, response, completion-string location, reproduction steps</td></tr>
+    </tbody></table></div>
+
+    <h2>Distinctions that matter</h2>
+    <h3>LLM vs. agent</h3>
+    <pre>LLM:   “Here is how you could do it.”
+Agent: “I used an approved tool, observed the result,
+        and selected the next step.”</pre>
+    <p>An LLM may provide reasoning inside an agent. The agent is the larger system with tools, state, iteration, and stop conditions.</p>
+    <h3>Prompt vs. context</h3>
+    <p>A <strong>prompt</strong> is the current question or work instruction. <strong>Context</strong> is all information visible to the model for this decision. The prompt is part of the context, not a synonym for it.</p>
+    <h3>Tool vs. MCP vs. agent</h3>
+    <p>A <strong>tool</strong> performs an action. <strong>MCP</strong> is a connection method for tools and data. An <strong>agent</strong> combines goal, decisions, actions, observations, and stopping. Connecting a tool through MCP does not automatically create an agent.</p>
+    <h3>Agent vs. harness</h3>
+    <p>The <strong>agent</strong> decides the next action while tracking a goal. The <strong>harness</strong> controls available information and tools, limits, verification, and records. Sources may draw the boundary differently; this is the distinction used in our project.</p>
+
+    <h2>A good prompt has four parts</h2>
+    <div class="table-wrap"><table><thead><tr><th>Part</th><th>Question</th></tr></thead><tbody><tr><td>Role</td><td>What responsibility or perspective?</td></tr><tr><td>Goal</td><td>What must be completed?</td></tr><tr><td>Constraints</td><td>Which scope, tools, actions, and formats are allowed or prohibited?</td></tr><tr><td>Done condition</td><td>What evidence proves completion?</td></tr></tbody></table></div>
+    <p>Vague request: <code>Check the login problem.</code></p>
+    <div class="box"><p><strong>Improved:</strong> On the authorized local login lab, send a request using the class account. Find the required completion string in the response and return its exact location with the original response evidence. If it cannot be confirmed, do not guess PASS. Record evidence for UNKNOWN or FAIL instead.</p></div>
+
+    <h2>Evidence and status</h2>
+    <div class="table-wrap"><table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td>PASS</td><td>External success evidence is present</td></tr><tr><td>FAIL</td><td>Executed, with evidence of failure</td></tr><tr><td>UNKNOWN</td><td>Executed, but evidence is insufficient for a verdict</td></tr><tr><td>NOT_RUN</td><td>Not actually executed</td></tr></tbody></table></div>
+    <p>“The test passed” is only a sentence. A reliable result points to originals that another person can inspect. The following is a <strong>conceptual example</strong>, not a real Week 1 run:</p>
+    <pre>{
+  "status": "PASS",
+  "claim": "Required completion string found",
+  "evidence": ["request.txt", "response.txt", "reproduce.md"],
+  "scope": "local-education-lab",
+  "uncertainty": [],
+  "next_action": "write report"
+}</pre>
+
+    <h2>Team roles</h2>
+    <div class="table-wrap"><table><thead><tr><th>Role</th><th>Main responsibility</th></tr></thead><tbody><tr><td>Integration · Education · Dispatcher</td><td>Maintains the shared structure, routes work, connects modules</td></tr><tr><td>Specialist A</td><td>Completes one area from input through verdict and log</td></tr><tr><td>Specialist B</td><td>Handles another area and returns evidence or a clear failure log</td></tr><tr><td>Oracle</td><td>Applies verdict rules to claims and original evidence</td></tr><tr><td>Reporter</td><td>Produces a reproducible record without inventing facts</td></tr></tbody></table></div>
+    <p>Each two-person team splits primary ownership. One teammate focuses on prompt/reasoning or verdict rules; the other on tool execution/failure logs or reporting. A partner must run or review the work with the same input before the team calls it complete.</p>
+
+    <h2>Safe scope</h2>
+    <p>RedHarness may run only on a local educational lab we operate, against class-approved addresses, ports, and functions, and within the specified request, time, and tool limits.</p>
+    <p>It must not automatically run against school systems, public websites found through search, targets outside the allowlist, or systems involving real accounts, personal data, or destructive effects. External training sites—including PortSwigger Web Security Academy—are for human study only unless separate written authorization for automation is confirmed.</p>
+    <div class="box"><p><strong>Publicly accessible does not mean authorized for automated testing.</strong></p></div>
+
+    <h2>Self-check</h2>
+    <ol><li>What can an agent do that a basic LLM call cannot do by itself?</li><li>Why is a prompt only one part of context?</li><li>Why does MCP alone not create an agent?</li><li>Which layer enforces a limit of ten requests?</li><li>Why is an AI's “I completed the test” not proof?</li><li>How do UNKNOWN and NOT_RUN differ?</li><li>Who checks original response evidence?</li><li>Which targets may RedHarness access automatically?</li></ol>
+
+    <h2>Preparation for Week 2</h2>
+    <p>When the instructor provides the static RH-CASE-01 request/response example, mark the apparent target, user-supplied values, result, and possible success evidence. Note two unfamiliar words. For “Check the login problem,” identify missing role, goal, constraints, and done condition. List your preferred modules or vulnerability areas and your preferred work style: prompt/reasoning, execution/logging, verification, or documentation/explanation.</p>
+    <p>You do not need to know all HTTP terminology yet. In Week 2 we divide the same login request into method, address, headers, and body.</p>
+    <p><a class="button" href="./">Return to English slides ↑</a></p>
+  </main>
+</body>
+</html>

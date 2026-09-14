@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <title>RedHarness · Week 1 — AI Agents and Harness Engineering</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap");
+    :root{--bg:#08070a;--surface:#121016;--surface2:#17131b;--line:#2b2733;--line2:#1f1c26;--fg:#eceaee;--muted:#a8a2b0;--red:#dd2a45;--red2:#ff4d67;--green:#61d095;--amber:#f3b85b;--head:"Chakra Petch","Inter",sans-serif;--mono:"JetBrains Mono",Consolas,monospace;--body:"Inter","Segoe UI",sans-serif}
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--fg);font-family:var(--body)}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black 0%,transparent 86%)}
+    .glow{position:fixed;width:50vw;height:50vw;right:-22vw;top:-25vw;border-radius:50%;background:radial-gradient(circle,rgba(221,42,69,.18),transparent 66%);pointer-events:none}
+    .topbar{position:fixed;z-index:40;inset:0 0 auto;height:68px;border-bottom:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;padding:0 42px;background:rgba(8,7,10,.9);backdrop-filter:blur(12px)}
+    .brand{font:700 20px var(--head);letter-spacing:.08em}.brand i{font-style:normal;color:var(--red)}
+    .topmeta{display:flex;align-items:center;gap:18px;font:12px var(--mono);color:var(--muted);letter-spacing:.07em}.topmeta strong{color:var(--fg)}
+    .lang-link{border:1px solid var(--line);color:var(--fg);padding:7px 10px;text-decoration:none;letter-spacing:.02em}.lang-link:hover,.lang-link:focus-visible{border-color:var(--red);color:var(--red2);outline:none}
+    main{position:fixed;inset:68px 0 58px}.slide{position:absolute;inset:0;padding:clamp(28px,4.8vh,60px) clamp(38px,6.5vw,108px);display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transform:translateX(34px);transition:opacity .25s ease,transform .25s ease;overflow-y:auto}.slide.active{opacity:1;visibility:visible;transform:none;z-index:2}
+    .center{text-align:center;align-items:center}.eyebrow{font:12px var(--mono);letter-spacing:.15em;color:var(--red2);text-transform:uppercase;margin-bottom:13px}
+    h1,h2,h3{font-family:var(--head);margin:0;line-height:1.1}h1{font-size:clamp(48px,7vw,100px);letter-spacing:-.035em}h2{font-size:clamp(32px,4.25vw,62px);letter-spacing:-.025em;max-width:1200px}h3{font-size:clamp(17px,1.8vw,26px)}
+    .lead{font-size:clamp(17px,1.8vw,26px);line-height:1.55;color:#d5d1d8;max-width:1080px;margin:20px 0 0}.center .lead{margin-left:auto;margin-right:auto}.accent{color:var(--red2)}.good{color:var(--green)}.warn{color:var(--amber)}.muted{color:var(--muted)}
+    .rule{width:84px;height:4px;background:var(--red);margin:24px 0;border-radius:8px;box-shadow:0 0 20px rgba(221,42,69,.5)}.kicker{font:12px var(--mono);color:var(--muted);margin-top:18px}
+    .grid2,.grid3,.grid4{display:grid;gap:16px;margin-top:25px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{position:relative;background:linear-gradient(145deg,rgba(23,19,27,.96),rgba(14,12,17,.96));border:1px solid var(--line);padding:19px 21px;min-height:116px}.card:before{content:"";position:absolute;left:-1px;top:20px;width:3px;height:28px;background:var(--red)}.card h3{margin-bottom:8px}.card p,.card li{margin:0;color:#c7c2cb;font-size:clamp(13px,1.15vw,17px);line-height:1.45}.card ul{margin:8px 0 0;padding-left:19px}
+    .num{font:12px var(--mono);color:var(--red2);margin-bottom:8px}.big-num{font:700 48px var(--head);color:var(--red2);line-height:1}.statement{font:600 clamp(30px,4.4vw,67px)/1.25 var(--head);max-width:1200px;letter-spacing:-.02em}
+    .quote{border-left:5px solid var(--red);padding-left:24px;margin-top:26px;font:600 clamp(25px,3.2vw,49px)/1.3 var(--head);max-width:1160px}.explain{margin-top:17px;color:#c9c4cd;font-size:clamp(14px,1.3vw,19px);line-height:1.55;max-width:1140px}.explain strong{color:#fff}
+    .callout{margin-top:20px;border:1px solid rgba(221,42,69,.55);background:rgba(221,42,69,.075);padding:15px 18px;display:flex;gap:14px;align-items:flex-start}.callout .tag{flex:0 0 auto;font:600 11px var(--mono);letter-spacing:.07em;color:#fff;background:var(--red);padding:6px 9px}.callout p{margin:0;color:#ddd8df;font-size:clamp(13px,1.15vw,17px);line-height:1.5}
+    .flow{display:flex;align-items:stretch;gap:10px;margin-top:28px}.node{flex:1;min-width:0;border:1px solid var(--line);background:var(--surface);padding:17px;text-align:center}.node b{font:600 clamp(16px,1.7vw,24px) var(--head);display:block}.node small{display:block;margin-top:7px;color:var(--muted);font-size:clamp(11px,1vw,14px);line-height:1.35}.arrow{align-self:center;font:700 23px var(--mono);color:var(--red2)}
+    .terminal{margin-top:22px;border:1px solid var(--line);background:#09080b;box-shadow:0 18px 54px rgba(0,0,0,.35)}.terminal-head{height:36px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 13px;color:var(--muted);font:11px var(--mono)}.dot{width:8px;height:8px;border-radius:50%;background:#39343f}.dot:first-child{background:var(--red)}.terminal pre{margin:0;padding:17px 21px;font:clamp(11px,1.03vw,15px)/1.55 var(--mono);color:#d9d5dc;white-space:pre-wrap}.prompt{color:var(--red2)}.ok{color:var(--green)}.dim{color:#77717e}
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}.pillrow{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.pill{border:1px solid var(--line);padding:8px 11px;font:11px var(--mono);color:#cbc6cf;background:rgba(18,16,22,.8)}.pill.red{border-color:var(--red);color:#fff}
+    .scene{display:flex;align-items:stretch;justify-content:center;gap:10px;margin-top:25px}.scene-item{flex:1;max-width:230px;border:1px solid var(--line);background:linear-gradient(145deg,#17131b,#0d0b0f);padding:16px 13px;text-align:center}.scene-icon{display:block;font-size:35px;line-height:1;margin-bottom:10px}.scene-item b{display:block;font:600 clamp(15px,1.55vw,22px) var(--head)}.scene-item p{margin:7px 0 0;color:var(--muted);font-size:clamp(11px,.98vw,14px);line-height:1.4}.scene-arrow{align-self:center;color:var(--red2);font:700 22px var(--mono)}
+    .layers{margin-top:24px;display:grid;gap:9px}.layer{border:1px solid var(--line);padding:14px 20px;display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;background:var(--surface)}.layer b{font:600 19px var(--head)}.layer span{color:#c9c4cd;line-height:1.45;font-size:clamp(13px,1.1vw,16px)}.layer.active-layer{border-color:var(--red);background:rgba(221,42,69,.08)}
+    .definition{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:start;margin-top:12px;padding:13px 16px;border-left:3px solid var(--red);background:rgba(18,16,22,.72)}.definition b{font:600 16px var(--head)}.definition span{font-size:clamp(12px,1vw,15px);line-height:1.45;color:#cbc6cf}
+    .schema{margin-top:18px;border:1px solid var(--line);background:#0b090d;padding:15px 20px;font:clamp(11px,.95vw,14px)/1.5 var(--mono);white-space:pre-wrap;color:#d8d4db}.schema .key{color:#8da5ff}.schema .val{color:#7cdaa8}
+    table{width:100%;border-collapse:collapse;margin-top:23px;font-size:clamp(12px,1.05vw,16px)}th,td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;line-height:1.4}th{background:#17131b;color:#fff;font-family:var(--head)}td{color:#c9c4cd}td:first-child{color:#fff;font-weight:700}
+    .checklist{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:13px}.checklist li{border-bottom:1px solid var(--line2);padding:0 0 13px 32px;position:relative;font-size:clamp(16px,1.55vw,22px);color:#d6d2da}.checklist li:before{content:"✓";position:absolute;left:0;color:var(--red2);font-family:var(--mono)}
+    .footer{position:fixed;z-index:40;inset:auto 0 0;height:58px;border-top:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:rgba(8,7,10,.9);backdrop-filter:blur(10px)}.hint{font:11px var(--mono);color:#77717e}.controls{display:flex;align-items:center;gap:8px}.controls button{width:38px;height:32px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:18px var(--mono);cursor:pointer}.controls button:hover,.controls button:focus-visible{border-color:var(--red);color:var(--red2);outline:none}.progress{position:absolute;left:0;bottom:0;height:3px;background:var(--red);width:0;transition:width .25s}.status{display:inline-flex;align-items:center;gap:8px;font:12px var(--mono);color:#d6d2d9}.status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+    @media(max-width:900px){.topbar{padding:0 16px}.topmeta span{display:none}.slide{padding:28px 22px}.grid3,.grid4{grid-template-columns:repeat(2,1fr)}.flow,.scene{flex-wrap:wrap}.node,.scene-item{flex-basis:42%}.arrow,.scene-arrow{display:none}.split{grid-template-columns:1fr;gap:18px}.layer{grid-template-columns:110px 1fr}}
+    @media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.slide{justify-content:flex-start}.hint{display:none}.footer{justify-content:center}.status{display:none}.card{min-height:0}}
+    @media(max-height:900px) and (min-width:901px){.slide{padding-top:20px;padding-bottom:20px}h2{font-size:clamp(30px,3.7vw,52px)}.lead{margin-top:14px}.grid2,.grid3,.grid4{margin-top:18px;gap:12px}.card{padding:14px 17px;min-height:0}.flow,.scene{margin-top:18px}.quote{margin-top:15px}.callout{margin-top:14px;padding:11px 14px}.definition{margin-top:8px;padding:10px 13px}.schema{margin-top:12px;padding:11px 16px}table{margin-top:16px}th,td{padding:9px 11px}}
+    @media(prefers-reduced-motion:reduce){.slide,.progress{transition:none}}@media print{@page{size:16in 9in;margin:0}html,body{overflow:visible}.topbar,.footer,.glow{display:none}.slide{position:relative;inset:auto;width:16in;height:9in;padding:.65in .85in;opacity:1!important;visibility:visible!important;transform:none!important;page-break-after:always;overflow:hidden}main{position:static}}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <header class="topbar">
+    <div class="brand">IMPES<i>.</i> REDHARNESS</div>
+    <div class="topmeta"><a class="lang-link" href="companion.html">Study notes</a><a class="lang-link" href="../" lang="ko">한국어</a><span id="sectionLabel">OPENING</span><strong id="pageCount">01 / 35</strong></div>
+  </header>
+  <main id="deck">
+    <section class="slide active center" data-section="OPENING">
+      <div class="eyebrow">WEEK 01 · 2026.09.14</div><h1>AI Agents &amp;<br><span class="accent">Harness Engineering</span></h1><div class="rule"></div>
+      <p class="lead">Move beyond asking AI a single question. Design a system that carries a goal through to completion and verifies the result.</p><p class="kicker">REDHARNESS · 90 MINUTES · CONCEPT SESSION</p>
+    </section>
+    <section class="slide" data-section="OPENING">
+      <div class="eyebrow">TODAY'S MAP</div><h2>One map to build in your head today</h2>
+      <div class="flow"><div class="node"><b>① Why?</b><small>What we learn when<br>AI can do so much</small></div><div class="arrow">→</div><div class="node"><b>② What?</b><small>LLM · Agent<br>Prompt · Context</small></div><div class="arrow">→</div><div class="node"><b>③ How?</b><small>What a harness does<br>Safe execution</small></div><div class="arrow">→</div><div class="node"><b>④ Our way</b><small>RedHarness<br>Schedule · Roles · Safety</small></div></div>
+      <div class="callout"><span class="tag">TODAY</span><p>We are not coding today. We are building the shared language and system map that we will use for the rest of the semester.</p></div>
+    </section>
+    <section class="slide center" data-section="WHY">
+      <div class="eyebrow">THE QUESTION</div><div class="statement">“AI can do almost everything now.<br>So <span class="accent">how will you use it?</span>”</div>
+      <p class="lead">The outcome depends less on simply having a tool and more on how we design the goal, information, verification, and iteration.</p>
+    </section>
+    <section class="slide" data-section="CLUB">
+      <div class="eyebrow">REDHARNESS</div><h2>Our club in one sentence</h2>
+      <div class="quote">We design and test a harness that lets AI agents perform security tasks <span class="accent">safely and repeatably.</span></div>
+      <p class="explain">Over one semester, we will <strong>build one RedHarness and apply each new concept directly to it.</strong></p>
+      <div class="pillrow"><span class="pill red">AI AGENT</span><span class="pill">HARNESS</span><span class="pill">SECURITY LAB</span><span class="pill">EVIDENCE</span><span class="pill">TEAM ENGINEERING</span></div>
+    </section>
+    <section class="slide" data-section="CLUB">
+      <div class="eyebrow">SEMESTER DESTINATION</div><h2>Our final demo is <span class="accent">more than a chat window</span></h2>
+      <div class="flow"><div class="node"><b>Goal input</b><small>A defined educational security task</small></div><div class="arrow">→</div><div class="node"><b>Role assignment</b><small>Dispatcher and specialist agents</small></div><div class="arrow">→</div><div class="node"><b>Safe execution</b><small>Only approved tools and scope</small></div><div class="arrow">→</div><div class="node"><b>Evidence report</b><small>Results, logs, and failure causes</small></div></div>
+      <p class="lead">The deliverable is not one lucky answer. It is a system whose process we can explain when we run it again.</p>
+    </section>
+    <section class="slide" data-section="CLUB">
+      <div class="eyebrow">HOW WE LEARN</div><h2>Monday 17:30 · A 90-minute rhythm</h2>
+      <div class="grid4"><div class="card"><div class="big-num">15</div><h3>Connect</h3><p>Link the previous result to today's goal.</p></div><div class="card"><div class="big-num">25</div><h3>Learn</h3><p>Understand the new terms and structure.</p></div><div class="card"><div class="big-num">40</div><h3>Build &amp; test</h3><p>In later weeks, implement and run it.</p></div><div class="card"><div class="big-num">10</div><h3>Evidence</h3><p>Record success, failure, and next action.</p></div></div>
+      <p class="kicker">Weeks 1–2 use no Claude or API execution. From Week 3, each result becomes part of the real project.</p>
+    </section>
+    <section class="slide" data-section="TERMS">
+      <div class="eyebrow">WORDS BEFORE TECHNOLOGY</div><h2>Turn unfamiliar terms into <span class="accent">human roles</span></h2>
+      <div class="grid3"><div class="card"><div class="num">LLM</div><h3>Think and generate language</h3><p>Reads the given information and produces an answer or candidate next action. By itself, it does not operate files or the web.</p></div><div class="card"><div class="num">AGENT</div><h3>Worker with a task</h3><p>Receives a goal, chooses the next action, and continues based on tool results.</p></div><div class="card"><div class="num">HARNESS</div><h3>Work environment and rules</h3><p>Combines information, tools, report format, safety scope, and stop conditions.</p></div><div class="card"><div class="num">DISPATCHER</div><h3>Intake and routing</h3><p>Breaks down a request and decides which specialist should handle each part and in what order.</p></div><div class="card"><div class="num">ORACLE</div><h3>Evidence reviewer</h3><p>Checks whether the claim matches the evidence and assigns PASS, FAIL, UNKNOWN, or NOT_RUN.</p></div><div class="card"><div class="num">REPORTER</div><h3>Report builder</h3><p>Combines results and evidence into a document that people can understand.</p></div></div>
+    </section>
+    <section class="slide" data-section="TERMS">
+      <div class="eyebrow">SEMESTER CASE · RH-CASE-01</div><h2>Today's case continues into the <span class="accent">final report</span></h2>
+      <div class="scene"><div class="scene-item"><span class="scene-icon">📨</span><b>Task input</b><p>An approved local login task and completion condition.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">🚦</span><b>Dispatcher</b><p>Selects the matching specialist module.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">🛠️</span><b>Specialist</b><p>Observes responses with a class account and approved tool.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">🔎</span><b>Oracle</b><p>Checks for the completion string in the real response.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">📝</span><b>Reporter</b><p>Records status, evidence, errors, and next action.</p></div></div>
+      <p class="explain"><strong>In Weeks 1–2 we study this map and static examples without Claude.</strong> From Week 3, we add one layer at a time: baseline execution, contract, real tools, verdicts, and integration.</p>
+    </section>
+    <section class="slide" data-section="FOUNDATION">
+      <div class="eyebrow">FOUNDATION · LLM</div><h2>What is an LLM?</h2>
+      <div class="split"><div><p class="lead">A language model that learns patterns from large amounts of text and <strong>generates what is likely to come next</strong> from the text provided so far.</p><div class="pillrow"><span class="pill">SUMMARIZE</span><span class="pill">CLASSIFY</span><span class="pill">EXPLAIN</span><span class="pill">DRAFT CODE</span><span class="pill">SUGGEST PLANS</span></div></div><div class="terminal"><div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span>mental-model.txt</div><pre><span class="prompt">Input</span>  “If login repeatedly fails...”
+  ↓ calculate patterns in context
+<span class="ok">Output</span> “lock the account or require
+       additional authentication...”</pre></div></div>
+      <div class="callout"><span class="tag">CAUTION</span><p>Being good at generating the next expression does not mean always knowing what is true in the real world.</p></div>
+    </section>
+    <section class="slide" data-section="FOUNDATION">
+      <div class="eyebrow">HALLUCINATION</div><h2>Hallucination: <span class="accent">plausible but unsupported</span></h2>
+      <div class="grid3"><div class="card"><h3>Invented facts</h3><p>Confidently names documents, options, or vulnerability IDs that do not exist.</p></div><div class="card"><h3>Wrong connections</h3><p>Links individually correct clues to the wrong cause or conclusion.</p></div><div class="card"><h3>False completion</h3><p>May claim “the test passed” even though nothing was executed.</p></div></div>
+      <p class="lead">A confident tone is not an accuracy score.</p>
+    </section>
+    <section class="slide" data-section="FOUNDATION">
+      <div class="eyebrow">FALSE SUCCESS</div><h2>A particularly dangerous sentence in security work</h2>
+      <div class="terminal"><div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span>agent-run.log</div><pre><span class="dim">[10:14:02]</span> scanning target...
+<span class="dim">[10:14:03]</span> no command executed
+<span class="dim">[10:14:04]</span> no response captured
+
+<span class="prompt">AI:</span> <span class="ok">“Vulnerability detection and verification are complete.”</span></pre></div>
+      <div class="quote">Before accepting the conclusion, ask:<br><span class="accent">“What evidence proves completion?”</span></div>
+    </section>
+    <section class="slide" data-section="LANGUAGE">
+      <div class="eyebrow">PROMPT</div><h2>A prompt is more than one question</h2>
+      <div class="grid4"><div class="card"><div class="num">ROLE</div><h3>Role</h3><p>What perspective should it use?</p></div><div class="card"><div class="num">GOAL</div><h3>Goal</h3><p>What must be completed?</p></div><div class="card"><div class="num">RULES</div><h3>Constraints</h3><p>Scope, prohibitions, tools, format</p></div><div class="card"><div class="num">DONE</div><h3>Done condition</h3><p>What proves success?</p></div></div>
+      <p class="lead">A good prompt is not a magic spell. It is a short work contract.</p>
+    </section>
+    <section class="slide" data-section="LANGUAGE">
+      <div class="eyebrow">PROMPT · BEFORE / AFTER</div><h2>Turn a vague request into an executable instruction</h2>
+      <div class="grid2"><div class="terminal"><div class="terminal-head">BEFORE</div><pre><span class="prompt">“Find a vulnerability on this website.”</span>
+
+Which target? What authorization?
+Which tools? What success criterion?
+What evidence format?
+All are missing.</pre></div><div class="terminal"><div class="terminal-head">AFTER</div><pre><span class="ok">Target:</span> provided local training app
+<span class="ok">Scope:</span> login input handling only
+<span class="ok">Method:</span> observe → hypothesize → verify once
+<span class="ok">Do not:</span> access out-of-scope addresses
+<span class="ok">Done:</span> submit request, response,
+      and reproduction steps</pre></div></div>
+    </section>
+    <section class="slide" data-section="LANGUAGE">
+      <div class="eyebrow">CONTEXT</div><h2>Context is the <span class="accent">workbench visible to AI now</span></h2>
+      <div class="flow"><div class="node"><b>System rules</b><small>Role · safety · priority</small></div><div class="node"><b>User request</b><small>Current goal and conditions</small></div><div class="node"><b>Materials</b><small>Documents · code · logs</small></div><div class="node"><b>Work history</b><small>Prior decisions and tool results</small></div></div>
+      <p class="lead">Missing relevant information increases guessing. Too much irrelevant information can hide the important clues.</p>
+    </section>
+    <section class="slide" data-section="TOOLS">
+      <div class="eyebrow">TOOLS</div><h2>Turning an LLM's words into real action</h2>
+      <div class="flow"><div class="node"><b>LLM</b><small>Decides what to do</small></div><div class="arrow">→</div><div class="node"><b>Tool call</b><small>Read files · run commands · search</small></div><div class="arrow">→</div><div class="node"><b>Environment</b><small>The real state changes</small></div><div class="arrow">→</div><div class="node"><b>Result</b><small>Success · failure · new information</small></div></div>
+      <div class="callout"><span class="tag">RISK</span><p>Tools expand capability and risk together. We therefore need permissions, input checks, execution limits, and a defined target scope.</p></div>
+    </section>
+    <section class="slide" data-section="TOOLS">
+      <div class="eyebrow">MCP · SIMPLE VIEW</div><h2>MCP is a <span class="accent">common connection method</span> for models and tools</h2>
+      <div class="split"><div class="layers"><div class="layer"><b>AI app</b><span>Where a user provides a goal and sees the result</span></div><div class="layer active-layer"><b>MCP</b><span>Describes available tools and call formats through a common protocol</span></div><div class="layer"><b>External systems</b><span>Files, databases, browsers, and internal APIs</span></div></div><div><p class="lead">Think of it like a connection standard such as USB. A connection alone does not give AI a goal or make it safe.</p><div class="callout"><span class="tag">DO NOT CONFUSE</span><p>MCP is not an agent. It is one way to connect tools that an agent may use.</p></div></div></div>
+    </section>
+    <section class="slide" data-section="LLM VS AGENT">
+      <div class="eyebrow">BEGINNER VIEW · BRAIN VS WORKER</div><h2>LLM: a brain that produces an answer<br>Agent: a worker that <span class="accent">performs the task</span></h2>
+      <div class="grid2"><div class="card"><span class="scene-icon">🧠</span><div class="num">LLM</div><h3>An expert advising at a desk</h3><p>Reads text and produces the next output—an explanation, plan, or code. By default, it does not open files, click buttons, or run commands.</p></div><div class="card"><span class="scene-icon">🧑‍🔧</span><div class="num">AI AGENT</div><h3>A worker moving with tools</h3><p>Receives a goal, uses an LLM to choose the next action, runs approved tools, and chooses again from the result.</p></div></div>
+      <div class="quote"><span class="accent">LLM:</span> “Here is how to do it.”<br><span class="accent">Agent:</span> “I will do it, inspect the result, and choose the next step.”</div>
+      <div class="callout"><span class="tag">CAUTION</span><p>The LLM still handles reasoning and language inside an agent. The agent is the larger system that adds tools, state, and repeated execution.</p></div>
+    </section>
+    <section class="slide" data-section="LLM VS AGENT">
+      <div class="eyebrow">SAME TASK · DIFFERENT BEHAVIOR</div><h2>“Check the local login task”</h2>
+      <div class="grid2"><div><div class="num">GENERAL LLM RESPONSE</div><div class="terminal"><div class="terminal-head">TEXT IN → TEXT OUT</div><pre><span class="prompt">User:</span> Check the local login task.
+
+<span class="ok">LLM:</span> Send a login request with the class
+account and look for the completion string.
+Tell me the result and I will explain the next step.</pre></div><p class="explain">It explains a method, but it did not send a request. This is not a verified completion result.</p></div><div><div class="num">AGENT EXECUTION</div><div class="terminal"><div class="terminal-head">GOAL → ACTION → EVIDENCE</div><pre><span class="dim">1.</span> Check approved target and done condition
+<span class="dim">2.</span> Send request with class account
+<span class="dim">3.</span> Observe status code and body
+<span class="dim">4.</span> Pass completion-string candidate
+<span class="dim">5.</span> Oracle checks the original response
+<span class="ok">6.</span> Report status and evidence</pre></div><p class="explain">It acts on and observes the environment with tools. The harness controls scope and verification.</p></div></div>
+    </section>
+    <section class="slide" data-section="AGENT">
+      <div class="eyebrow">AGENT LOOP</div><h2>The core of an agent is an <span class="accent">iteration loop</span></h2>
+      <div class="flow"><div class="node"><b>Goal</b><small>The task to finish</small></div><div class="arrow">→</div><div class="node"><b>Plan &amp; decide</b><small>Choose the next action</small></div><div class="arrow">→</div><div class="node"><b>Use a tool</b><small>Act on the environment</small></div><div class="arrow">→</div><div class="node"><b>Observe &amp; revise</b><small>Use the result in the next loop</small></div></div>
+      <p class="lead">An agent is not something that creates a perfect plan at once. It adjusts its next action after seeing what actually happened.</p>
+    </section>
+    <section class="slide" data-section="AGENT">
+      <div class="eyebrow">CONCRETE LOOP</div><h2>One RH-CASE-01 agent loop</h2>
+      <div class="scene"><div class="scene-item"><span class="scene-icon">🎯</span><b>Check goal</b><p>Verify the required completion string with evidence.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">💭</span><b>Choose action</b><p>Decide to send an approved request with the class account.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">🛠️</span><b>Call tool</b><p>Use send_request once on the approved local target.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">👀</span><b>Observe</b><p>Read the status code and response body.</p></div><div class="scene-arrow">→</div><div class="scene-item"><span class="scene-icon">📝</span><b>Update state</b><p>Save evidence; if insufficient, choose the next safe action.</p></div></div>
+      <div class="callout"><span class="tag">REPEAT</span><p>The loop stops when the done condition is met, a limit is reached, or an action requires human approval.</p></div>
+    </section>
+    <section class="slide" data-section="AGENT">
+      <div class="eyebrow">STOP CONDITIONS</div><h2>A good agent knows <span class="accent">when to stop</span></h2>
+      <div class="grid4"><div class="card"><div class="num good">SUCCESS</div><h3>Evidence found</h3><p>The done condition and supporting evidence are satisfied.</p></div><div class="card"><div class="num warn">FAILURE</div><h3>Error repeats</h3><p>The same error remains after an allowed retry.</p></div><div class="card"><div class="num">LIMIT</div><h3>Budget reached</h3><p>Time, tokens, or tool-call count reaches its limit.</p></div><div class="card"><div class="num">APPROVAL</div><h3>Ask a person</h3><p>Stop before a risky or hard-to-reverse action.</p></div></div>
+      <p class="lead">Infinite loops and reckless guesses are design failures, not autonomy.</p>
+    </section>
+    <section class="slide" data-section="HARNESS">
+      <div class="eyebrow">HARNESS</div><h2>A harness is the agent's <span class="accent">execution structure</span></h2>
+      <p class="lead">A physical harness holds a person or machine safely while transferring force. In AI, a harness connects model capability to a goal, limits its scope, and checks the outcome.</p>
+      <div class="pillrow"><span class="pill red">INSTRUCTIONS</span><span class="pill">CONTEXT</span><span class="pill">TOOLS</span><span class="pill">STATE</span><span class="pill">GUARDRAILS</span><span class="pill">EVALUATION</span></div>
+    </section>
+    <section class="slide" data-section="HARNESS">
+      <div class="eyebrow">THREE LAYERS</div><h2>Model, agent, and harness as three layers</h2>
+      <div class="layers"><div class="layer active-layer"><b>Harness</b><span>Designs goal delivery, context selection, tool permissions, logging, verification, cost, and stop conditions</span></div><div class="layer"><b>Agent</b><span>Reads the current state, chooses the next action, and tracks the goal</span></div><div class="layer"><b>LLM</b><span>Generates reasoning output or candidate actions from language and code patterns</span></div></div>
+      <div class="callout"><span class="tag">DO NOT CONFUSE</span><p>Industry sources draw the boundary between agent and harness differently. This course uses these three layers to keep responsibilities clear.</p></div>
+    </section>
+    <section class="slide" data-section="REDHARNESS">
+      <div class="eyebrow">CONNECT TO OUR PROJECT</div><h2>Connect the concepts to <span class="accent">our harness</span></h2>
+      <div class="flow"><div class="node"><b>Course concepts</b><small>Goal · context · tools · verification</small></div><div class="arrow">→</div><div class="node"><b>Shared contract</b><small>Request and result formats</small></div><div class="arrow">→</div><div class="node"><b>Role agents</b><small>Dispatcher · A · B · Oracle</small></div><div class="arrow">→</div><div class="node"><b>Integrated harness</b><small>Safe execution and evidence reporting</small></div></div>
+      <p class="lead">The terms we learned become project folders, code, logs, and team roles.</p>
+    </section>
+    <section class="slide" data-section="ROLES">
+      <div class="eyebrow">ROLE · DISPATCHER</div><h2>The Dispatcher is the <span class="accent">control-room coordinator</span></h2>
+      <div class="split"><div><p class="lead">Like a taxi dispatcher matching a passenger request to a suitable driver, it reads a user request, divides the work, and routes it to the right agents.</p><div class="definition"><b>Input</b><span>User goal, target scope, completion condition, current system state</span></div><div class="definition"><b>Decision</b><span>Which specialist is needed; parallel or sequential work; where to route a failure</span></div><div class="definition"><b>Output</b><span>A structured AgentTask and execution order that each agent can understand</span></div></div><div class="scene"><div class="scene-item"><span class="scene-icon">📨</span><b>Intake</b><p>Check needed information instead of forwarding one large goal unchanged.</p></div><div class="scene-item"><span class="scene-icon">🚦</span><b>Coordinate</b><p>Use progress and errors to decide the next call.</p></div></div></div>
+      <div class="callout"><span class="tag">DO NOT CONFUSE</span><p>The Dispatcher does not perform every specialist analysis. Its main job is decomposition and coordination.</p></div>
+    </section>
+    <section class="slide" data-section="ROLES">
+      <div class="eyebrow">ROLE · TEAM A / TEAM B</div><h2>A and B handle <span class="accent">different vulnerability areas</span></h2>
+      <div class="grid2"><div class="card"><div class="num">TEAM A · AREA ONE</div><h3>Complete one task end to end</h3><p>Analyze input and design tool actions for the first area. Preserve execution results and original evidence to complete an L1 flow.</p></div><div class="card"><div class="num">TEAM B · AREA TWO</div><h3>Connect another area with the same contract</h3><p>Handle a second area and return real input with evidence—or a clear failure log—from the same harness.</p></div></div>
+      <div class="flow"><div class="node"><b>Task input</b><small>Area and allowed scope</small></div><div class="arrow">→</div><div class="node"><b>Dispatcher</b><small>Select A or B</small></div><div class="arrow">→</div><div class="node"><b>Specialist</b><small>Action + observation + evidence</small></div></div>
+      <p class="explain">Each two-person team splits primary ownership between <strong>prompt/reasoning strategy</strong> and <strong>tool execution/failure logs</strong>. The partner must run or review the work with the same input.</p>
+    </section>
+    <section class="slide" data-section="ROLES">
+      <div class="eyebrow">ROLE · ORACLE</div><h2>The Oracle is not an all-knowing AI; it is an <span class="accent">evidence reviewer</span></h2>
+      <div class="grid3"><div class="card"><div class="num">1 · FORMAT</div><h3>Is anything missing?</h3><p>Check target, time, request, response, reproduction steps, and the claim.</p></div><div class="card"><div class="num">2 · MEANING</div><h3>Does evidence support the claim?</h3><p>Do not turn an ordinary error log into a successful vulnerability claim.</p></div><div class="card"><div class="num">3 · VERDICT</div><h3>What is the status?</h3><p>Return PASS, FAIL, UNKNOWN, or NOT_RUN with a reason.</p></div></div>
+      <div class="schema">verdict = {
+  <span class="key">"status"</span>: <span class="val">"UNKNOWN"</span>,
+  <span class="key">"reason"</span>: <span class="val">"No original response; reproduction cannot be checked"</span>,
+  <span class="key">"required"</span>: [<span class="val">"response.txt"</span>, <span class="val">"reproduce.md"</span>]
+}</div>
+      <div class="callout"><span class="tag">IMPORTANT</span><p>An Oracle may also use an LLM and can be wrong. Use explicit verdict rules and original evidence; a person reviews high-risk final decisions.</p></div>
+    </section>
+    <section class="slide" data-section="ROLES">
+      <div class="eyebrow">ROLE · REPORTER</div><h2>The Reporter turns results into a <span class="accent">readable report</span></h2>
+      <table><thead><tr><th>Receives</th><th>What it does</th><th>What it must not do</th></tr></thead><tbody><tr><td>A/B claims and original evidence</td><td>Merge matching facts and clearly separate conflicts</td><td>Fill gaps with plausible invented details</td></tr><tr><td>Oracle verdict and reason</td><td>Make verified, insufficient-evidence, and failed states visible</td><td>Present insufficient evidence as success</td></tr><tr><td>Execution scope and logs</td><td>Organize reproduction, impact, limits, and next action</td><td>Expose sensitive values or unnecessary raw data</td></tr></tbody></table>
+      <p class="explain">One teammate primarily owns <strong>Oracle rules and tests</strong>; the other owns <strong>Reporter logs and result tables</strong>. They cross-check verdict evidence and missing records.</p>
+    </section>
+    <section class="slide" data-section="REDHARNESS">
+      <div class="eyebrow">SYSTEM VIEW</div><h2>RedHarness: one complete run</h2>
+      <div class="flow"><div class="node"><b>1. Request</b><small>Target · scope · done condition</small></div><div class="arrow">→</div><div class="node"><b>2. Route</b><small>Dispatcher divides the work</small></div><div class="arrow">→</div><div class="node"><b>3. Investigate</b><small>Selected A or B checks it</small></div><div class="arrow">→</div><div class="node"><b>4. Verify</b><small>Oracle judges evidence</small></div><div class="arrow">→</div><div class="node"><b>5. Report</b><small>Record success, failure, uncertainty</small></div></div>
+      <div class="callout"><span class="tag">SHARED HARNESS</span><p>A shared input/output contract, scope, stop conditions, and logs connect the entire flow. A and B use the same contract even when they handle different areas.</p></div>
+    </section>
+    <section class="slide" data-section="REDHARNESS">
+      <div class="eyebrow">EVIDENCE &amp; STATUS</div><h2>Our system preserves <span class="accent">status and evidence</span>, not just an answer</h2>
+      <div class="terminal"><div class="terminal-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span>result.json · concept</div><pre>{
+  "status": <span class="ok">"PASS"</span>,
+  "claim": "Required completion string found",
+  "evidence": ["request.txt", "response.txt", "reproduce.md"],
+  "scope": "local-education-lab",
+  "uncertainty": [],
+  "next_action": "write report"
+}</pre></div>
+      <div class="callout"><span class="tag">DO NOT CONFUSE</span><p>A long explanation is not automatically good evidence. We need originals and reproduction steps that another person can check.</p></div>
+    </section>
+    <section class="slide" data-section="REDHARNESS">
+      <div class="eyebrow">AI USE · LEARNING PATH</div><h2>Freedom to use AI grows <span class="accent">from Week 3</span></h2>
+      <div class="grid4"><div class="card"><div class="num">WEEKS 1–2</div><h3>Understand the baseline</h3><p>Find structure and evidence in prepared input, responses, and logs—without Claude.</p></div><div class="card"><div class="num">WEEK 3</div><h3>Run the baseline</h3><p>Reproduce the happy path with identical input and verified starter material.</p></div><div class="card"><div class="num">REMOTE + WEEK 4</div><h3>Change one part</h3><p>Modify one marked area, then design a team strategy within the shared contract.</p></div><div class="card"><div class="num">WEEK 5+</div><h3>Implement independently</h3><p>Choose prompts and internal implementation, then explain them using run results.</p></div></div>
+      <div class="callout"><span class="tag">ALWAYS FIXED</span><p>Input/output format, allowed scope, execution limits, and success evidence remain shared at every stage.</p></div>
+    </section>
+    <section class="slide" data-section="SAFETY">
+      <div class="eyebrow">SAFE SCOPE</div><h2>Separate “we can” from <span class="accent">“we may”</span></h2>
+      <div class="grid2"><div class="card"><div class="num good">ALLOWED</div><h3>Approved local training environment</h3><ul><li>A lab target we run ourselves</li><li>Addresses and functions named in class</li><li>Checks within the set calls, time, and tools</li></ul></div><div class="card"><div class="num warn">STOP</div><h3>Stop outside the scope</h3><ul><li>Targets we do not own or have permission to test</li><li>Actions affecting real accounts, personal data, or services</li><li>Destructive or persistent actions not in the rules</li></ul></div></div>
+      <div class="callout"><span class="tag">PRINCIPLE</span><p>Safety is not a final warning. Target restrictions, tool permissions, stop conditions, and logs are built in from the start.</p></div>
+    </section>
+    <section class="slide" data-section="PREVIEW">
+      <div class="eyebrow">SECURITY TEASER</div><h2>Vulnerabilities often begin with a <span class="accent">broken assumption</span></h2>
+      <div class="grid3"><div class="card"><h3>Trusting input</h3><p>Assuming user input is safe can create injection vulnerabilities.</p></div><div class="card"><h3>Trusting access</h3><p>Assuming that knowing an address grants permission can break access control.</p></div><div class="card"><h3>Trusting output</h3><p>Putting external data directly on a page may allow scripts to execute.</p></div></div>
+      <p class="lead">From next week, we will see how an agent observes these issues with tools and how a harness safely limits that work.</p>
+    </section>
+    <section class="slide" data-section="WRAP-UP">
+      <div class="eyebrow">THREE SENTENCES</div><h2>Leave today with these three sentences</h2>
+      <ul class="checklist"><li>An <strong>LLM</strong> generates output; an <strong>agent</strong> uses tools and repeatedly tracks a goal.</li><li>A <strong>harness</strong> connects the goal, context, tools, state, verification, and stop conditions.</li><li>Even with the same AI, <strong>the designed process and evidence</strong> change quality, safety, and cost.</li></ul>
+    </section>
+    <section class="slide" data-section="WRAP-UP">
+      <div class="eyebrow">AFTER CLASS</div><h2>A short preparation for next week</h2>
+      <div class="grid3"><div class="card"><div class="num">01</div><h3>Observe request &amp; response</h3><p>In a static example, mark the target, supplied values, result, and apparent success evidence.</p></div><div class="card"><div class="num">02</div><h3>Fill prompt gaps</h3><p>Find what is missing from a vague request: role, goal, constraints, and done condition.</p></div><div class="card"><div class="num">03</div><h3>Interests &amp; work style</h3><p>List preferred modules, vulnerability areas, and tasks. The president assigns roles for difficulty and balance.</p></div></div>
+      <div class="callout"><span class="tag">NEXT</span><p>Weeks 1–2 remain foundational. In Week 3 we run the shared baseline, then move toward team-specific designs.</p></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <span class="hint">← → / SPACE · HOME / END · SWIPE</span>
+    <div class="controls"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div>
+    <span class="status">LOCAL DECK · 35</span><div class="progress" id="progress"></div>
+  </footer>
+  <script>
+    (function(){
+      var slides=Array.prototype.slice.call(document.querySelectorAll(".slide"));
+      var pageCount=document.getElementById("pageCount");
+      var sectionLabel=document.getElementById("sectionLabel");
+      var progress=document.getElementById("progress");
+      var current=0,touchStartX=0;
+      function clamp(value){return Math.max(0,Math.min(slides.length-1,value));}
+      function fromHash(){var parsed=parseInt(location.hash.replace("#",""),10);return Number.isFinite(parsed)?clamp(parsed-1):0;}
+      function show(index,updateHash){
+        current=clamp(index);
+        slides.forEach(function(slide,i){var active=i===current;slide.classList.toggle("active",active);slide.setAttribute("aria-hidden",active?"false":"true");});
+        var shown=String(current+1).padStart(2,"0"),total=String(slides.length).padStart(2,"0");
+        pageCount.textContent=shown+" / "+total;sectionLabel.textContent=slides[current].dataset.section||"WEEK 01";
+        progress.style.width=((current+1)/slides.length*100)+"%";document.title="RedHarness · Week 1 · "+shown+" / "+total;
+        if(updateHash&&location.hash!=="#"+(current+1)){history.replaceState(null,"","#"+(current+1));}
+      }
+      function next(){show(current+1,true);}function prev(){show(current-1,true);}
+      document.getElementById("next").addEventListener("click",next);document.getElementById("prev").addEventListener("click",prev);
+      window.addEventListener("keydown",function(event){if(["ArrowRight","PageDown"," ","Enter"].indexOf(event.key)>=0){event.preventDefault();next();}if(["ArrowLeft","PageUp","Backspace"].indexOf(event.key)>=0){event.preventDefault();prev();}if(event.key==="Home"){event.preventDefault();show(0,true);}if(event.key==="End"){event.preventDefault();show(slides.length-1,true);}});
+      window.addEventListener("hashchange",function(){show(fromHash(),false);});
+      window.addEventListener("touchstart",function(event){touchStartX=event.changedTouches[0].clientX;},{passive:true});
+      window.addEventListener("touchend",function(event){var delta=event.changedTouches[0].clientX-touchStartX;if(Math.abs(delta)>55){delta<0?next():prev();}},{passive:true});
+      show(fromHash(),false);
+    })();
+  </script>
+</body>
+</html>
