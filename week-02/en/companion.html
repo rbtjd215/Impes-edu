@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <title>Week 2 English Study Notes · RedHarness</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--surface:#17131b;--surface2:#111015;--line:#34303a;--fg:#eceaee;--muted:#bcb6c1;--red:#ff4d67;--green:#61d095}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 90% 0,rgba(221,42,69,.16),transparent 33rem),var(--bg);color:var(--fg);font:17px/1.72 system-ui,"Segoe UI",sans-serif} .shell{width:min(900px,calc(100% - 36px));margin:auto;padding:35px 0 80px}nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}nav a,.button{display:inline-block;border:1px solid var(--line);padding:8px 13px;color:var(--fg);text-decoration:none}a{color:#ffa6b3}a:hover,a:focus-visible{color:#fff;border-color:var(--red)}
+    .eyebrow{font:700 12px/1.4 ui-monospace,monospace;letter-spacing:.17em;color:var(--red)}h1{font-size:clamp(2.45rem,6.5vw,4.45rem);line-height:1.05;margin:12px 0 18px;letter-spacing:-.045em}h2{font-size:1.85rem;line-height:1.25;margin:58px 0 16px;border-top:1px solid var(--line);padding-top:25px}h3{font-size:1.25rem;margin:28px 0 8px}.lead{font-size:1.18rem;color:var(--muted);max-width:780px}p,li{max-width:810px}li{margin:6px 0}strong{color:#fff}blockquote{margin:20px 0;padding:10px 20px;border-left:4px solid var(--red);background:var(--surface)}
+    .box{padding:18px 22px;background:var(--surface);border:1px solid var(--line);margin:18px 0}.box p:first-child{margin-top:0}.box p:last-child{margin-bottom:0}.note{border-left:4px solid var(--green)}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--surface2);border:1px solid var(--line);padding:18px;font:14px/1.7 ui-monospace,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:var(--surface)}td:first-child{font-weight:700;color:#fff}code{font:.9em ui-monospace,Consolas,monospace;color:var(--green)}
+    .toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin-top:22px}.toc a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}.toc a:hover,.toc a:focus-visible{color:#fff;border-color:var(--red)}.source-list{font-size:.94rem}.small{font-size:.92rem;color:var(--muted)}
+    @media(max-width:650px){body{font-size:16px}.shell{width:min(100% - 26px,900px);padding-top:22px}.toc{grid-template-columns:1fr}.table-wrap{overflow-x:auto;border:1px solid var(--line)}.table-wrap table{min-width:620px;margin:0;border:0}.table-wrap th:first-child,.table-wrap td:first-child{border-left:0}.table-wrap th:last-child,.table-wrap td:last-child{border-right:0}h2{font-size:1.55rem}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav aria-label="Week 2 materials"><a href="../">← Week 2 hub</a><a href="./">English slides</a><a href="../ko/companion.html" lang="ko">한국어 노트</a><a href="../../">Education home</a></nav>
+    <p class="eyebrow">REDHARNESS · WEEK 02 · STUDENT COMPANION</p>
+    <h1>Learning RedHarness Design<br>from Existing Harnesses</h1>
+    <p class="lead">Review one run through CAI and PentestGPT, then connect those structures to the roles and project materials we may use for RedHarness.</p>
+
+    <div class="toc" aria-label="Contents">
+      <a href="#goals">Learning goals</a><a href="#scope">Scope for Week 2</a>
+      <a href="#three-layers">Three layers to separate</a><a href="#cai">One run through CAI</a>
+      <a href="#pentestgpt">One run through PentestGPT</a><a href="#compare">Comparing the structures</a>
+      <a href="#redharness">Connecting to RedHarness</a><a href="#project">Future project materials</a>
+      <a href="#request">AI work requests</a><a href="#check">Self-check</a>
+    </div>
+
+    <h2 id="goals">What you should understand</h2>
+    <ol>
+      <li>Distinguish an AI proposal, program control, and an actual tool return.</li>
+      <li>Explain the sequence of Agent, Runner, Tool, and Handoff in one CAI run.</li>
+      <li>Distinguish the Supervisor, deterministic checks, Executor, State, and Trace in PentestGPT.</li>
+      <li>Connect both examples to the RedHarness Dispatcher, specialist modules, Oracle, and Reporter.</li>
+      <li>Explain why the project needs onboarding instructions, a shared contract, module materials, tests, and run records.</li>
+      <li>Give a coding AI the reference, task, scope, and verification method for a piece of work.</li>
+    </ol>
+
+    <h2 id="scope">Scope for Week 2</h2>
+    <p>In Week 2, we only read official structure documents and a fictional classroom case. We do not run or install Claude, APIs, code, or security tools.</p>
+    <p><code>RH-CASE-01</code> is the fictional case ID for an authorized local login exercise. The inputs and observations below are not results from CAI or PentestGPT running this case.</p>
+    <blockquote>Goal input → action proposal → permission check → tool execution → actual observation → verdict and record</blockquote>
+    <p>Following this sequence helps us separate what the AI said from what the program actually did.</p>
+
+    <h2 id="three-layers">Three layers to separate first</h2>
+    <div class="table-wrap"><table><thead><tr><th>Layer</th><th>Meaning</th><th>Evidence to inspect</th></tr></thead><tbody>
+      <tr><td>AI proposal</td><td>A response or tool request that suggests what to do next</td><td>Model response</td></tr>
+      <tr><td>Program control</td><td>Code that reads the request type and performs checks, tool calls, or handoffs</td><td>Code path and run events</td></tr>
+      <tr><td>Actual observation</td><td>A value returned by a tool or environment</td><td>Original return value and record</td></tr>
+    </tbody></table></div>
+    <div class="box note"><p><strong>If the AI says, “I checked the status,” but there is no tool return, we have not confirmed an actual observation.</strong> Keep these three layers separate in design documents.</p></div>
+
+    <h2 id="cai">One run through CAI</h2>
+    <pre>Goal and observations
+  → Agent proposes the next action
+  → Runner processes the response type
+  → Tool call or Handoff to another Agent
+  → Tool return or answer from the new role
+  → Next decision or stop</pre>
+    <div class="table-wrap"><table><thead><tr><th>Term</th><th>Plain meaning</th><th>Role in one run</th></tr></thead><tbody>
+      <tr><td>Agent</td><td>Decision-making AI</td><td>Reads the goal and observations, then answers or requests tool use.</td></tr>
+      <tr><td>Runner</td><td>Control program</td><td>Reads whether the Agent response means stop, call a tool, or hand off, then processes that step.</td></tr>
+      <tr><td>Tool</td><td>Actual function</td><td>Performs an approved function when the Runner calls it and returns a value.</td></tr>
+      <tr><td>Handoff</td><td>Transfer action</td><td>Transfers responsibility and the required input from the current Agent to another Agent.</td></tr>
+      <tr><td>Trace</td><td>Record concept for reviewing a run</td><td>Helps reconstruct decision requests, tool calls, and observations in time order.</td></tr>
+    </tbody></table></div>
+
+    <h3>An Agent request is not an execution result</h3>
+    <p>An Agent may propose, “Check the practice environment status.” The real action occurs when the Runner calls a Tool. The value returned by the Tool is the observation, and that value becomes input for the next Agent decision.</p>
+
+    <h3>A Handoff is an action, not a file</h3>
+    <p>When a Handoff occurs, the Runner changes the active Agent and the input passed to it. A handoff may include the goal, needed observations, and next question. The three items in the classroom diagram are not a fixed CAI file format.</p>
+
+    <h3>A caution about Trace in CAI</h3>
+    <p>The CAI architecture presents tracing as a design pillar, but the archived material reviewed for class marks its implementation as work in progress. Do not read the classroom timeline as an actual CAI log format.</p>
+
+    <h2 id="pentestgpt">One run through PentestGPT</h2>
+    <pre>Read saved State
+  → Supervisor proposes one next task
+  → Deterministic code checks the task and allowed scope
+  → Executor handles the approved task
+  → Actual observation updates State and Trace
+  → Next task or stop</pre>
+    <div class="table-wrap"><table><thead><tr><th>Term</th><th>Plain meaning</th><th>Role in one run</th></tr></thead><tbody>
+      <tr><td>Supervisor</td><td>Task-selection AI</td><td>Reads the saved situation and proposes one next task.</td></tr>
+      <tr><td>Deterministic check</td><td>Program that applies defined rules</td><td>Checks target scope, task validity, evidence sources, and conditions for state changes.</td></tr>
+      <tr><td>Executor</td><td>Task-handling AI</td><td>Receives one approved task, handles it, and records the actual observation.</td></tr>
+      <tr><td>State</td><td>Saved data for continuing a run</td><td>Stores items such as the current task, confirmed observations, and remaining limits.</td></tr>
+      <tr><td>Trace</td><td>Record of past run events</td><td>Reconstructs the order of selections, calls, returns, and errors.</td></tr>
+    </tbody></table></div>
+
+    <h3>Code can check explicit rules</h3>
+    <p>Defined conditions such as an allowed target, a request limit, or a required input can be checked by deterministic code instead of another AI role. The isolated execution environment should also restrict actual tool permissions.</p>
+
+    <h3>State and Trace serve different purposes</h3>
+    <div class="box"><p><strong>State</strong> tells the next run where to continue. <strong>Trace</strong> shows what happened and in what order during an earlier run.</p></div>
+    <p>After an interruption, the system needs State such as the last task, actual observation, and remaining limits. To investigate a failure, it needs a Trace of task selection, tool calls, return values, and errors.</p>
+
+    <h2 id="compare">Comparing CAI and PentestGPT</h2>
+    <div class="table-wrap"><table><thead><tr><th>Question</th><th>CAI</th><th>Current PentestGPT structure</th></tr></thead><tbody>
+      <tr><td>Who chooses the next step?</td><td>Agent proposes the next action</td><td>Supervisor proposes one next task</td></tr>
+      <tr><td>Who controls the step around execution?</td><td>Runner processes a Tool call or Handoff</td><td>Deterministic code checks the task, then Executor handles it</td></tr>
+      <tr><td>Where does the real action occur?</td><td>When Runner calls a Tool</td><td>When Executor and the tool handle an approved task</td></tr>
+      <tr><td>What remains after the step?</td><td>Tool return becomes input for the next decision. Trace implementation requires a separate status check</td><td>State for continuation and Trace for review are kept distinct</td></tr>
+    </tbody></table></div>
+    <p>The goal is not to copy either structure. We read where each project places responsibility, then use that comparison to ask what RedHarness needs.</p>
+
+    <h2 id="redharness">Connecting the examples to RedHarness</h2>
+    <pre>RH-CASE-01 input
+  → Dispatcher
+  → Select Specialist Module A or B
+  → Oracle
+  → Reporter</pre>
+    <ul>
+      <li><strong>Dispatcher:</strong> Reads the case input and selects the appropriate Specialist Module A or B.</li>
+      <li><strong>Specialist Module A/B:</strong> Interprets observations, proposes a next action, and uses approved tools to obtain an actual observation.</li>
+      <li><strong>Oracle:</strong> Compares a claim with the original observation and decides whether the evidence is sufficient.</li>
+      <li><strong>Reporter:</strong> Records status, evidence, errors, and the next action in a reproducible form.</li>
+    </ul>
+    <p>The starting design selects either Specialist A or Specialist B according to the input. We will consider parallel execution only after defining shared inputs, outputs, and merge rules. The four responsibilities do not automatically require four separate AI Agents.</p>
+
+    <h3>The loop inside a specialist module</h3>
+    <pre>Shared input
+  → AI proposes a candidate next action
+  → Deterministic code checks scope and limits
+  → Approved Tool runs
+  → Actual observation is saved
+  → Repeat if evidence is insufficient, otherwise send to Oracle</pre>
+    <p>Observation interpretation and action proposals are candidates for AI work. Deterministic code can manage scope checks, limits, and tool calls. We will test the exact loop limit and stop condition with a shared contract and mocks starting in Week 3.</p>
+
+    <h3>Role count and cost</h3>
+    <p>Adding an Agent may separate specialized responsibilities, but it can also add model calls and handoff context. Compare designs with the same input and inspect evidence, tokens, tool calls, execution time, and failure records. In Week 2, we assign human project responsibilities. We do not set the final number of AI Agents.</p>
+
+    <h2 id="project">Materials for a future RedHarness project</h2>
+    <p>The following tree is a <strong>proposed structure</strong> for the development project we will build. We will decide the actual names and locations after choosing the shared contract and technology in Week 3.</p>
+    <pre>redharness/
+├─ README.md
+├─ AGENTS.md
+├─ .gitignore / .env.example
+├─ docs/
+│  ├─ PROJECT_SPEC.md
+│  └─ THIRD_PARTY.md
+├─ modules/
+│  ├─ dispatcher/
+│  ├─ specialist_a/
+│  ├─ specialist_b/
+│  ├─ oracle/
+│  └─ reporter/
+├─ tests/
+└─ runs/</pre>
+    <div class="table-wrap"><table><thead><tr><th>Example material</th><th>Question it should answer</th></tr></thead><tbody>
+      <tr><td>README.md</td><td>How does a new team member start and run the project?</td></tr>
+      <tr><td>PROJECT_SPEC.md</td><td>What shared inputs, outputs, and allowed scope must every module follow?</td></tr>
+      <tr><td>THIRD_PARTY.md</td><td>What are the source, version, and license of external code and materials?</td></tr>
+      <tr><td>MODULE_SPEC.md</td><td>What is this module responsible for, and how does it receive input, return output, and report failure?</td></tr>
+      <tr><td>sample_io.json</td><td>What example input and output use the shared format?</td></tr>
+      <tr><td>tests/</td><td>What do fixed inputs and mocks verify?</td></tr>
+      <tr><td>runs/</td><td>Where do actual results and errors go?</td></tr>
+    </tbody></table></div>
+    <p>A <code>Contract</code> is the agreement about inputs and outputs between modules, not a required filename. <code>PROJECT_SPEC.md</code> is one possible document for recording that agreement.</p>
+
+    <h3>AGENTS.md and prompt.md</h3>
+    <div class="table-wrap"><table><thead><tr><th>Example file</th><th>Reader</th><th>Purpose</th></tr></thead><tbody>
+      <tr><td>AGENTS.md</td><td>Coding AI that helps develop the project</td><td>Explains edit scope, shared references, verification, and recordkeeping.</td></tr>
+      <tr><td>Module prompt.md</td><td>Model used while RedHarness runs</td><td>Explains the module goal, input, output, and action criteria.</td></tr>
+    </tbody></table></div>
+    <p>The files have different readers and are used at different times. A module that does not use AI may not need a runtime prompt. The team may also choose different filenames.</p>
+
+    <h3>tests and runs</h3>
+    <ul>
+      <li>A <strong>Mock</strong> is a testing method that substitutes a predefined return value for a real tool.</li>
+      <li><strong>tests/</strong> is an example location for repeatedly checking the contract and behavior with fixed inputs and mocks.</li>
+      <li><strong>runs/</strong> is an example location for run events, observations, and errors. The team must remove secrets and decide which records belong in Git.</li>
+    </ul>
+
+    <h2 id="request">Asking a coding AI to do project work</h2>
+    <p>The request “Build a harness” does not identify the reference or scope. Include these four parts.</p>
+    <div class="table-wrap"><table><thead><tr><th>Part</th><th>Question</th><th>Classroom example</th></tr></thead><tbody>
+      <tr><td>Reference</td><td>Which documents and examples should the AI follow?</td><td>Shared contract and assigned module specification</td></tr>
+      <tr><td>Task</td><td>What should the AI create or change?</td><td>Draft mock input and output for RH-CASE-01</td></tr>
+      <tr><td>Scope</td><td>Which files and actions are allowed?</td><td>Assigned module only, with no network or API execution</td></tr>
+      <tr><td>Verification</td><td>How will a person decide that the work is complete?</td><td>Expected result and explanation of changed files</td></tr>
+    </tbody></table></div>
+    <p>A clear request limits unintended scope expansion and gives a person a concrete review standard.</p>
+
+    <h2 id="check">Self-check</h2>
+    <ol>
+      <li>How is an Agent's tool request different from a Tool return?</li>
+      <li>Is the CAI Runner an AI Agent or program code?</li>
+      <li>What changes when a Handoff occurs?</li>
+      <li>Why does PentestGPT place a deterministic check between the Supervisor and Executor?</li>
+      <li>When do you need State, and when do you need Trace?</li>
+      <li>Does the RedHarness Dispatcher run Specialist A and B together in the starting design?</li>
+      <li>Which parts of a specialist loop are AI candidates, and which parts can deterministic code manage?</li>
+      <li>Who reads AGENTS.md, and who reads a module prompt.md?</li>
+      <li>How do tests/ and runs/ differ?</li>
+      <li>What four parts should an AI work request contain?</li>
+    </ol>
+
+    <h2>Assignment and preparation for Week 3</h2>
+    <p>The first Week 2 assignment asks you to propose the harness structure for your assigned part on one page. It does not require implementation, installation, or a final decision about the number of AI Agents.</p>
+    <ol>
+      <li>Responsibility of your assigned part</li>
+      <li>Input it receives and result it returns for <code>RH-CASE-01</code></li>
+      <li>Candidate AI decisions and deterministic rules or stop conditions</li>
+      <li>One relevant structure from CAI or PentestGPT and the materials your part needs</li>
+      <li>One check for the Week 3 mock and anything you still do not understand</li>
+    </ol>
+    <div class="box"><p><strong>The reviewed assignment sheet will provide the exact official reading sections, submission location, and deadline.</strong> The assignment sheet has not been published yet. Your proposal will provide questions for the Week 3 shared contract. Submitting it does not finalize the team's design.</p></div>
+
+    <h2>Official materials used</h2>
+    <ul class="source-list">
+      <li><a href="https://github.com/aliasrobotics/cai/blob/6dc79257777f5f1c9500b4d2319935d34a47412e/docs/cai_architecture.md" target="_blank" rel="noopener">CAI architecture</a></li>
+      <li><a href="https://github.com/aliasrobotics/cai/blob/6dc79257777f5f1c9500b4d2319935d34a47412e/docs/running_agents.md" target="_blank" rel="noopener">CAI · Running agents</a></li>
+      <li><a href="https://github.com/GreyDGL/PentestGPT/blob/e8b1bb77d1ac00329675cec3b060aba971ec1ac8/docs/architecture.md" target="_blank" rel="noopener">PentestGPT architecture</a></li>
+      <li><a href="https://github.com/GreyDGL/PentestGPT/blob/e8b1bb77d1ac00329675cec3b060aba971ec1ac8/pentestgpt_agent/README.md" target="_blank" rel="noopener">PentestGPT Agent README</a></li>
+    </ul>
+    <p class="small">The links point to commits reviewed on 2026-09-21. The class uses archived CAI material and the current autonomous PentestGPT structure as learning references. We will decide whether RedHarness should reuse code from either project only after checking execution and licensing.</p>
+    <p><a class="button" href="./">Back to the English slides ↑</a></p>
+  </main>
+</body>
+</html>
