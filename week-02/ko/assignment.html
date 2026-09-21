@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08070a">
+  <meta name="description" content="RedHarness 2주차 담당 파트별 한 페이지 설계 과제">
+  <title>RedHarness · 2주차 파트별 과제</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--surface:#121016;--surface2:#19161e;--line:#302b37;--fg:#eceaee;--muted:#aaa4b2;--red:#dd2a45;--red2:#ff4d67;--green:#61d095;--amber:#f0bd67;--head:"Chakra Petch","Noto Sans KR",sans-serif;--body:"Noto Sans KR","Malgun Gothic","Segoe UI",sans-serif;--mono:"JetBrains Mono",Consolas,monospace}
+    *{box-sizing:border-box}html{min-width:320px;scroll-behavior:smooth}body{margin:0;color:var(--fg);font:16px/1.68 var(--body);background:radial-gradient(circle at 85% -8%,rgba(221,42,69,.16),transparent 34rem),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),var(--bg);background-size:auto,48px 48px,48px 48px,auto}a{color:inherit}.shell{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:36px 0 72px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--line)}.brand{font:700 18px var(--head);letter-spacing:.07em}.brand i{font-style:normal;color:var(--red)}.nav{display:flex;flex-wrap:wrap;gap:14px}.nav a{color:var(--muted);font-size:.88rem;text-decoration:none}.nav a:hover,.nav a:focus-visible{color:var(--fg)}
+    .eyebrow{margin:34px 0 9px;color:var(--red2);font:600 .78rem var(--mono);letter-spacing:.12em}h1,h2,h3,p{margin-top:0}h1{max-width:900px;margin-bottom:14px;font:700 clamp(2rem,4.8vw,3.6rem)/1.08 var(--head);letter-spacing:-.03em}h2{margin-bottom:14px;font:700 clamp(1.45rem,2.6vw,2rem)/1.18 var(--head)}h3{margin-bottom:9px;font:700 1.12rem/1.35 var(--head)}.lead{max-width:850px;margin-bottom:0;color:var(--muted);font-size:1.02rem}.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:26px}.meta div{min-width:0;padding:13px 14px;border-left:3px solid var(--line);background:rgba(18,16,22,.85)}.meta div:first-child{border-color:var(--green)}.meta span,.meta strong{display:block}.meta span{color:var(--muted);font-size:.75rem}.meta strong{margin-top:2px;font-size:.9rem;overflow-wrap:anywhere}
+    .notice{margin-top:24px;padding:18px 20px;border:1px solid rgba(240,189,103,.45);background:rgba(240,189,103,.07)}.notice strong{color:var(--amber)}.notice p{margin:0}.notice p+p{margin-top:7px;color:var(--muted);font-size:.9rem}.section-label{margin:42px 0 13px;color:var(--muted);font:600 .78rem var(--mono);letter-spacing:.1em}.common,.role{border:1px solid var(--line);background:rgba(18,16,22,.91)}.common{padding:24px}.common-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.common ul{margin:0;padding-left:1.2rem}.common li+li{margin-top:5px}.role-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.role-nav a{padding:14px;border:1px solid var(--line);background:rgba(18,16,22,.8);text-decoration:none}.role-nav strong,.role-nav small{display:block}.role-nav small{margin-top:2px;color:var(--muted)}.role-nav a:hover,.role-nav a:focus-visible{border-color:var(--red2)}
+    .role{margin-top:18px;padding:26px}.role-head{display:flex;justify-content:space-between;gap:20px;align-items:start}.tag{flex:none;padding:5px 8px;border:1px solid var(--line);color:var(--green);font:600 .72rem var(--mono)}.role-intro{max-width:860px;color:var(--muted)}.reading{margin:19px 0;padding:17px;background:var(--surface2);border-left:3px solid var(--red)}.reading h3{font-size:1rem}.reading ol{margin:0;padding-left:1.25rem}.reading li+li{margin-top:6px}.reading a{text-decoration-color:#6e6676;text-underline-offset:3px}.reading a:hover,.reading a:focus-visible{color:var(--red2)}.prompt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.prompt{min-width:0;padding:17px;border:1px solid var(--line);background:rgba(8,7,10,.42)}.prompt.full{grid-column:1/-1}.prompt .num{display:block;margin-bottom:7px;color:var(--red2);font:600 .74rem var(--mono)}.prompt ul{margin:0;padding-left:1.2rem}.prompt li+li{margin-top:4px}.checklist{margin:19px 0 0;padding:17px;border-top:1px solid var(--line);background:rgba(97,208,149,.045)}.checklist h3{font-size:1rem}.checklist ul{margin:0;padding-left:1.2rem}.stop{margin:16px 0 0;color:var(--muted);font-size:.9rem}.footer{display:flex;justify-content:space-between;gap:20px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);color:#7e7785;font-size:.8rem}.footer p{margin:0}
+    @media(max-width:760px){.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.common-grid,.prompt-grid,.role-nav{grid-template-columns:1fr}.prompt.full{grid-column:auto}.role-head,.top,.footer{flex-direction:column}.tag{align-self:start}}@media(max-width:460px){.shell{width:min(100% - 24px,1120px)}.meta{grid-template-columns:1fr}.role,.common{padding:19px}}
+    @media print{body{background:#fff;color:#111}.shell{width:100%;padding:0}.top,.role-nav{display:none}.common,.role,.notice,.reading,.prompt,.checklist,.meta div{background:#fff;border-color:#bbb;color:#111}.lead,.role-intro,.reading,.stop,.footer,.meta span{color:#444}.role{break-inside:avoid-page}.role:not(:first-of-type){break-before:page}a{text-decoration:none}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">IMPES<i>.</i> REDHARNESS</div>
+      <nav class="nav" aria-label="페이지 이동"><a href="../">← 2주차 허브</a><a href="./">수업 슬라이드</a><a href="companion.html">스터디 노트</a><a href="../../">교육 홈</a></nav>
+    </header>
+
+    <p class="eyebrow">WEEK 02 · ASSIGNMENT · KOREAN</p>
+    <h1>내 담당 파트의 하네스 구성 한 페이지 제안</h1>
+    <p class="lead">전문 A, 전문 B, Oracle·Reporter 중 수업에서 배정받은 카드 하나를 선택해 작성합니다. 이번 과제는 3주차 공통 계약과 mock 실행에서 확인할 설계 질문을 만드는 단계입니다.</p>
+
+    <section class="meta" aria-label="과제 정보">
+      <div><span>상태</span><strong>배포됨</strong></div>
+      <div><span>예상 시간</span><strong>30~45분</strong></div>
+      <div><span>마감</span><strong>9월 27일(일) 20:00 KST</strong></div>
+      <div><span>제출</span><strong>팀장 개인 카카오톡 또는 단체 카카오톡방</strong></div>
+    </section>
+
+    <aside class="notice">
+      <p><strong>실행 과제가 아닙니다.</strong> 설치·코딩·API 키·모델 호출·보안 도구 실행 없이 한 페이지 제안만 작성합니다.</p>
+      <p>실제 외부 사이트와 실서비스를 대상으로 삼지 않습니다. RH-CASE-01의 모든 입력·관찰·결과는 수업용 가상 값입니다.</p>
+      <p lang="en">The English card will be prepared only after the international member's assigned role is confirmed.</p>
+    </aside>
+
+    <div class="section-label">COMMON RULES</div>
+    <section class="common" aria-labelledby="common-title">
+      <h2 id="common-title">세 파트의 공통 작성 규칙</h2>
+      <div class="common-grid">
+        <div><h3>한 페이지에 남길 것</h3><ul><li>내 책임</li><li>받을 입력과 돌려줄 출력</li><li>AI·일반 코드·도구의 분담</li><li>참고할 공식 구조 하나</li><li>3주차 mock 질문과 아직 모르는 점</li></ul></div>
+        <div><h3>이번에 정하지 않을 것</h3><ul><li>전문 A/B의 실제 취약점 분야</li><li>기반 하네스와 실제 랩</li><li>에이전트 수와 실제 폴더명</li><li>실행 성공 여부와 완성 코드</li><li>학생 제안을 곧바로 공통 계약으로 확정하는 일</li></ul></div>
+      </div>
+    </section>
+
+    <div class="section-label">CHOOSE YOUR ASSIGNED ROLE</div>
+    <nav class="role-nav" aria-label="파트별 과제 바로가기">
+      <a href="#specialist-a"><strong>전문 모듈 A</strong><small>CAI의 판단→도구 루프</small></a>
+      <a href="#specialist-b"><strong>전문 모듈 B</strong><small>PentestGPT의 작업·상태 경계</small></a>
+      <a href="#oracle-reporter"><strong>Oracle·Reporter</strong><small>증거·상태·기록</small></a>
+    </nav>
+
+    <article class="role" id="specialist-a">
+      <div class="role-head"><div><p class="eyebrow">ROLE CARD A</p><h2>전문 모듈 A</h2></div><span class="tag">30–45 MIN</span></div>
+      <p class="role-intro">RH-CASE-01의 가상 입력을 받았을 때 전문 모듈 A가 무엇을 판단하고, 무엇을 일반 코드와 도구에 맡기며, 어떤 결과를 Oracle에 넘길지 제안합니다.</p>
+      <section class="reading"><h3>지정 읽기</h3><ol><li><a href="companion.html#cai">스터디 노트 · CAI의 한 실행</a>, <a href="companion.html#redharness">RedHarness에 연결하기</a></li><li><a href="https://github.com/aliasrobotics/cai/blob/6dc79257777f5f1c9500b4d2319935d34a47412e/docs/cai_architecture.md" target="_blank" rel="noopener">CAI architecture</a>의 Agent·Tool·Handoff</li><li><a href="https://github.com/aliasrobotics/cai/blob/6dc79257777f5f1c9500b4d2319935d34a47412e/docs/running_agents.md" target="_blank" rel="noopener">CAI · Running agents</a>의 Agent loop</li></ol></section>
+      <div class="prompt-grid">
+        <section class="prompt"><span class="num">01 · 내 책임</span><h3>개인 주 책임을 고릅니다</h3><ul><li>판단 전략 / 도구 실행·실패 기록 중 하나</li><li>내가 맡을 일을 한 문장으로 설명</li></ul></section>
+        <section class="prompt"><span class="num">02 · 입력과 출력</span><h3>연결에 필요한 정보를 적습니다</h3><ul><li>Dispatcher에서 받을 정보 3개</li><li>행동 전에 필요한 관찰</li><li>Oracle에 넘길 결과·근거</li><li>실패 시 남길 정보</li></ul></section>
+        <section class="prompt"><span class="num">03 · 분담</span><h3>AI·코드·도구를 나눕니다</h3><ul><li>AI 판단 후보</li><li>일반 코드 규칙과 이유</li><li>실제 도구가 할 일</li><li>허용 대상·입력·횟수·시간·종료 조건 중 2개 이상</li></ul></section>
+        <section class="prompt"><span class="num">04 · 참고 구조</span><h3>CAI에서 한 가지를 고릅니다</h3><ul><li>적용하고 싶은 점</li><li>그대로 가져오면 안 되는 점</li><li>추가로 확인할 점</li></ul></section>
+        <section class="prompt full"><span class="num">05 · 3주차 MOCK</span><h3>확인할 질문을 만듭니다</h3><ul><li>가상 입력 한 건과 기대 출력·상태</li><li>실패·판정 불가 예시 한 건</li><li>아직 모르는 점 또는 팀장에게 물을 질문</li></ul></section>
+      </div>
+      <section class="checklist"><h3>완료 확인</h3><ul><li>입력과 출력이 다음 모듈로 연결되는가?</li><li>AI의 제안, 코드의 검사, 도구의 실제 행동을 구분했는가?</li><li>실행하지 않은 내용을 실행 결과처럼 쓰지 않았는가?</li></ul></section>
+      <p class="stop">45분이 지나면 더 조사하지 말고 작성한 내용과 막힌 질문을 그대로 제출합니다. 권장 파일명: <code>W02_A_이름.md</code></p>
+    </article>
+
+    <article class="role" id="specialist-b">
+      <div class="role-head"><div><p class="eyebrow">ROLE CARD B</p><h2>전문 모듈 B</h2></div><span class="tag">30–45 MIN</span></div>
+      <p class="role-intro">RH-CASE-01의 가상 입력을 받았을 때 전문 모듈 B가 한 번에 어떤 작업을 선택하고, 실행 전후를 일반 코드가 어떻게 확인하며, 다음 실행이 이어받을 상태를 무엇으로 남길지 제안합니다.</p>
+      <section class="reading"><h3>지정 읽기</h3><ol><li><a href="companion.html#pentestgpt">스터디 노트 · PentestGPT의 한 실행과 State·Trace</a></li><li><a href="https://github.com/GreyDGL/PentestGPT/blob/e8b1bb77d1ac00329675cec3b060aba971ec1ac8/docs/architecture.md" target="_blank" rel="noopener">PentestGPT architecture</a>의 Maintained runtime</li><li><a href="https://github.com/GreyDGL/PentestGPT/blob/e8b1bb77d1ac00329675cec3b060aba971ec1ac8/pentestgpt_agent/README.md" target="_blank" rel="noopener">PentestGPT Agent README</a>의 Runtime shape</li></ol></section>
+      <div class="prompt-grid">
+        <section class="prompt"><span class="num">01 · 내 책임</span><h3>개인 주 책임을 고릅니다</h3><ul><li>판단 전략 / 도구 실행·실패 기록 중 하나</li><li>내가 맡을 일을 한 문장으로 설명</li></ul></section>
+        <section class="prompt"><span class="num">02 · 입력과 출력</span><h3>한 작업과 다음 상태를 적습니다</h3><ul><li>Dispatcher에서 받을 정보 3개</li><li>작업 한 건을 고를 때 필요한 것</li><li>Oracle에 넘길 결과·근거</li><li>다음 실행이 이어받을 상태</li></ul></section>
+        <section class="prompt"><span class="num">03 · 분담</span><h3>AI·코드·도구를 나눕니다</h3><ul><li>AI 판단 후보</li><li>일반 코드 규칙과 이유</li><li>실제 도구가 할 일</li><li>허용 대상·작업 제한·증거 출처·재시도·종료 중 2개 이상</li></ul></section>
+        <section class="prompt"><span class="num">04 · 참고 구조</span><h3>PentestGPT에서 한 가지를 고릅니다</h3><ul><li>적용하고 싶은 점</li><li>그대로 가져오면 안 되는 점</li><li>추가로 확인할 점</li></ul></section>
+        <section class="prompt full"><span class="num">05 · 3주차 MOCK</span><h3>상태가 이어지는지 확인합니다</h3><ul><li>가상 입력 한 건과 기대 출력·상태</li><li>실패·판정 불가 예시 한 건</li><li>다음 실행이 이어받을 상태 한 가지</li><li>아직 모르는 점 또는 팀장에게 물을 질문</li></ul></section>
+      </div>
+      <section class="checklist"><h3>완료 확인</h3><ul><li>입력과 출력이 다음 모듈로 연결되는가?</li><li>AI의 작업 제안, 코드의 검사, 도구의 실제 행동을 구분했는가?</li><li>State와 Trace를 같은 것으로 설명하지 않았는가?</li></ul></section>
+      <p class="stop">45분이 지나면 더 조사하지 말고 작성한 내용과 막힌 질문을 그대로 제출합니다. 권장 파일명: <code>W02_B_이름.md</code></p>
+    </article>
+
+    <article class="role" id="oracle-reporter">
+      <div class="role-head"><div><p class="eyebrow">ROLE CARD ORACLE / REPORTER</p><h2>Oracle·Reporter</h2></div><span class="tag">30–45 MIN</span></div>
+      <p class="role-intro">RH-CASE-01의 가상 실행 결과를 받았을 때 Oracle이 어떤 증거로 상태를 판정하고 Reporter가 무엇을 기록해야 하는지 제안합니다.</p>
+      <section class="reading"><h3>지정 읽기</h3><ol><li><a href="companion.html#three-layers">스터디 노트 · 먼저 구분할 세 가지</a>, <a href="companion.html#pentestgpt">State와 Trace</a>, <a href="companion.html#project">tests와 runs</a></li><li><a href="https://github.com/GreyDGL/PentestGPT/blob/e8b1bb77d1ac00329675cec3b060aba971ec1ac8/pentestgpt_agent/README.md" target="_blank" rel="noopener">PentestGPT Agent README</a>의 Memory and traces·Failure and restart behavior</li><li><a href="https://github.com/aliasrobotics/cai/blob/6dc79257777f5f1c9500b4d2319935d34a47412e/docs/cai_architecture.md" target="_blank" rel="noopener">CAI architecture</a>의 Tracing 목적과 구현 주의</li></ol></section>
+      <div class="prompt-grid">
+        <section class="prompt"><span class="num">01 · 내 책임</span><h3>Oracle 또는 Reporter를 고릅니다</h3><ul><li>Oracle 판정 규칙·테스트 / Reporter 로그·결과표 중 하나</li><li>내가 맡을 일을 한 문장으로 설명</li></ul></section>
+        <section class="prompt"><span class="num">02 · 입력과 출력</span><h3>판정과 기록에 필요한 것을 적습니다</h3><ul><li>전문 모듈에서 받을 정보 3개</li><li>판정에 사용할 수 있는 증거</li><li>반드시 남길 기록</li><li>정보가 빠졌을 때의 상태와 질문</li></ul></section>
+        <section class="prompt"><span class="num">03 · 상태 규칙</span><h3>네 상태를 구분합니다</h3><ul><li><code>PASS</code>: 외부에서 확인 가능한 성공 증거</li><li><code>FAIL</code>: 실행했고 실패 근거가 있음</li><li><code>UNKNOWN</code>: 실행했지만 판정 근거 부족</li><li><code>NOT_RUN</code>: 실제로 실행하지 않음</li></ul></section>
+        <section class="prompt"><span class="num">04 · 참고 구조</span><h3>판정·기록 구조 하나를 고릅니다</h3><ul><li>RedHarness에 적용하고 싶은 점</li><li>민감한 출력·개인정보·비밀값을 제외하는 방법</li><li>추가로 확인할 점</li></ul></section>
+        <section class="prompt full"><span class="num">05 · 3주차 MOCK</span><h3>증거가 상태를 뒷받침하는지 확인합니다</h3><ul><li>가상 결과 한 건과 기대 판정 상태</li><li>그 상태에 필요한 증거</li><li>일부 정보가 빠진 실패 예시 한 건</li><li>아직 모르는 점 또는 팀장에게 물을 질문</li></ul></section>
+      </div>
+      <section class="checklist"><h3>완료 확인</h3><ul><li><code>PASS</code>, <code>FAIL</code>, <code>UNKNOWN</code>, <code>NOT_RUN</code>을 구분했는가?</li><li>AI의 주장과 확인 가능한 증거를 구분했는가?</li><li>민감한 정보나 비밀값을 기록하지 않는 기준을 적었는가?</li></ul></section>
+      <p class="stop">45분이 지나면 더 조사하지 말고 작성한 내용과 막힌 질문을 그대로 제출합니다. 권장 파일명: <code>W02_ORACLE_이름.md</code> 또는 <code>W02_REPORTER_이름.md</code></p>
+    </article>
+
+    <footer class="footer"><p>RedHarness · 2026-2 · Week 02</p><p>제출: 2026-09-27 20:00 KST</p></footer>
+  </main>
+</body>
+</html>
