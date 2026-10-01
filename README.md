@@ -2,7 +2,7 @@
 
 2026년 2학기 IMPES 동아리에서 진행하는 RedHarness 프로젝트의 교육자료입니다.
 
-👉 [교육 사이트 바로 가기](https://rbtjd215.github.io/Impes-edu/)
+->> [교육 사이트 바로 가기](https://rbtjd215.github.io/Impes-edu/)
 
 ## RedHarness 소개
 
