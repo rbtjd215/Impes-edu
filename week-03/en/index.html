@@ -17,35 +17,36 @@ html{min-width:320px}a{overflow-wrap:anywhere}h2[id]{scroll-margin-top:22px}p,li
 </style></head>
 <body id="top"><a class="skip" href="#content">Skip to content</a><main class="shell" id="content"><nav aria-label="Learning materials"><a href="https://rbtjd215.github.io/Impes-edu/">← Education home</a><a href="https://rbtjd215.github.io/Impes-edu/week-03/">Week 3 materials</a><a href="https://rbtjd215.github.io/Impes-edu/week-03/ko/" lang="ko">한국어</a><a href="https://github.com/rbtjd215/Impes_RedHarness">Development repository</a></nav><p class="eyebrow">REDHARNESS · WEEK 03 · SELF-STUDY GUIDE</p><h1>Prepare for<br>RedHarness collaboration</h1>
 <p><strong>Week 3 self-study guide · English · 2026-10-01</strong></p>
-<p>This guide is for members using Git and Codex together for the first time. Follow the setup steps once, then return to the sections you need. You do not need to memorize commands: send a request to Codex and check what it actually did. Work at your own pace; the workflow below applies when you work, not as a requirement to work every day.</p>
-<p>This week, follow this guide to prepare your environment and learn the workflow. The guide itself is the activity; there is no separate assignment.</p>
+<p>This guide is for members using Git and Codex together for the first time. Follow the setup steps once, then return to the sections you need. You do not need to memorize commands: send a request to Codex and check what it actually did. Each team chooses its work dates and frequency. There is no daily work requirement.</p>
+<p>This week, follow this guide to prepare your environment and learn the workflow. <strong>The Week 3 assignment is to review and submit the Markdown (<code>.md</code>) report Codex creates after you work through the guide.</strong> All three teams use the same instructions. See <a href="#W03-SUBMIT">the end of Section 10 · Week 3 submission</a> for the procedure and request.</p>
 <blockquote>
-<p><strong>Before starting:</strong> Have Codex check the current remote, branch, shared rules, and your handoff in the development repository. Verify local checks, record upload, PR creation, merging into main, and actual feature completion separately. Use confirmed repository rules and the shared contract before relying on an earlier chat. If a required file is missing or records disagree, identify the difference rather than assuming that a procedure is already in place.</p>
+<p><strong>Before starting:</strong> A short start request asks Codex to check the remote, branch, shared contract, and your handoff according to the rules actually applied in the repository. Verify local checks, records, sharing, PRs, merging into main, and actual feature completion separately.</p>
 </blockquote>
 <section class="toc-panel" aria-labelledby="toc-title"><h2 id="toc-title">Go to the section you need</h2><ol class="toc">
 <li><a href="#W03-D01">Read first: your team and goal</a></li>
 <li><a href="#W03-D02">Prepare GitHub, Git, and the repository</a></li>
 <li><a href="#W03-D03">Connect a local project in Codex</a></li>
 <li><a href="#W03-D04">Start work with your team</a></li>
-<li><a href="#W03-D05">Check your environment and prepare the first upload</a></li>
+<li><a href="#W03-D05">Check the local environment and create the first automatic record</a></li>
 <li><a href="#W03-D06">Review your plan or existing implementation</a></li>
 <li><a href="#W03-D07">Develop one small feature</a></li>
 <li><a href="#W03-D08">Wrap up a chat or work session and record ideas</a></li>
-<li><a href="#W03-D09">Commit, push, open a PR, and trace changes</a></li>
+<li><a href="#W03-D09">Share work, use PRs, and trace changes</a></li>
 <li><a href="#W03-D10">Resume in a new chat: quick requests</a></li>
 </ol></section>
 <h2 id="W03-D01">01 · Read first: your team and goal</h2>
 
 <h3>What to do</h3>
-<p><strong>Part A is authentication bypass; Part B is XSS.</strong> Oracle and Reporter form <strong>one team of two</strong> that develops judgment and result recording. Check the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%EA%B0%9C%EB%B0%9C_%EC%97%AD%ED%95%A0%ED%91%9C.md">development roles</a>. If your assignment is missing or differs, ask the coordinator to clarify it.</p>
-<div class="table-wrap"><table>
+<p><strong>Part A is authentication bypass; Part B is XSS.</strong> Oracle and Reporter form <strong>one team of two</strong> that develops judgment and result recording together. Check the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%EA%B0%9C%EB%B0%9C_%EC%97%AD%ED%95%A0%ED%91%9C.md">development roles</a>. If your assignment is missing or differs, ask the coordinator to clarify it.</p>
+<table>
 <thead>
 <tr>
 <th>Team</th>
 <th>Responsibility</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>A · Authentication bypass</td>
 <td>Implement observations, actions, and candidate evidence for authentication bypass</td>
 </tr>
@@ -57,16 +58,18 @@ html{min-width:320px}a{overflow-wrap:anywhere}h2[id]{scroll-margin-top:22px}p,li
 <td>Oracle·Reporter</td>
 <td>Oracle makes the final judgment; Reporter preserves and records its status and evidence</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <p>Students use two places:</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>Place</th>
 <th>Purpose</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a href="https://rbtjd215.github.io/Impes-edu/">Impes-edu learning materials</a></td>
 <td>Read guides and learning information</td>
 </tr>
@@ -74,55 +77,57 @@ html{min-width:320px}a{overflow-wrap:anywhere}h2[id]{scroll-margin-top:22px}p,li
 <td><a href="https://github.com/rbtjd215/Impes_RedHarness">Impes_RedHarness development repository</a></td>
 <td>Manage rules, code, tests, task records, and PRs</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <p>The development repository and its branches, PRs, and commit history are <strong>public</strong>. Select what is safe to publish before introducing a plan or existing code.</p>
-<p><strong>Use one of three routes: first setup, work after setup, or uploading.</strong> After you become familiar with the guide, use the short start and wrap-up requests when you work.</p>
-<div class="table-wrap"><table>
+<p><strong>Use one of three routes: first setup, work after setup, or sharing.</strong> Read the setup route first. Once you are familiar with it, use the short start and wrap-up requests on the work route.</p>
+<table>
 <thead>
 <tr>
 <th>What you want to do</th>
 <th>Route</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Set up for the first time</td>
-<td><a href="#W03-D02">02 · Repository setup</a> → <a href="#W03-D03">03 · Project connection</a> → <a href="#W03-D04">04 · Team start</a> → <a href="#W03-D05">05 · Local checks and first record</a>. Once the required local checks pass, <a href="#W03-D06">06 · Read-only plan review</a> can continue even if uploading is blocked.</td>
+<td><a href="#W03-D02">02 · Repository setup</a> → <a href="#W03-D03">03 · Project connection</a> → <a href="#W03-D04">04 · Team start</a> → <a href="#W03-D05">05 · Local checks and first automatic record</a>. Once required local checks pass, <a href="#W03-D06">06 · Read-only plan review</a> can continue even if uploading is blocked. Request sharing in Section 09.</td>
 </tr>
 <tr>
 <td>Work after setup</td>
-<td><a href="#W03-D04">04 · Start</a> or <a href="#W03-D10">10 · Resume</a> → <a href="#W03-D07">07 · Small feature</a> → <a href="#W03-D08">08 · Wrap up</a>. Do not repeat the full setup for every request within the same goal.</td>
+<td><a href="#W03-D04">04 · Start</a> or <a href="#W03-D10">10 · Resume</a> → <a href="#W03-D07">07 · Small feature</a> → <a href="#W03-D08">08 · Wrap up the chat or work session</a>. Do not repeat the full setup for every request within the same goal.</td>
 </tr>
 <tr>
-<td>Upload to GitHub</td>
-<td><a href="#W03-D09">09 · Upload and PR</a>. Prepare the first record in Section 05 and request its upload separately in Section 09. Recording, local tests, push, PR creation, and merging into main are distinct states. Each team chooses when and how often to work.</td>
+<td>Share on GitHub</td>
+<td><a href="#W03-D09">09 · Sharing and PRs</a>. Create the first setup record in Section 05 and upload it with the sharing request in Section 09. Recording, testing, push, PR creation, and merging into main are distinct states.</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <h3>Read and check</h3>
 <p>If this is your first setup, follow <strong>02 · Repository setup → 03 · Project connection</strong> first. Team start requests are in <strong>Section 04</strong>. This section introduces your team and the overall route.</p>
 <h3>Expected result</h3>
 <p>You understand that A=authentication bypass, B=XSS, and Oracle/Reporter is one team, and know where to begin. Completing the whole harness or succeeding in a real vulnerability exercise is not an environment setup requirement.</p>
 <h3>If you are stuck</h3>
-<p>If your team is unclear, ask the coordinator and then use Section 04 after connecting the project. Codex should clarify only the assignment it needs. Any name check is for guidance; it does not verify identity or access permissions.</p>
+<p>If your team is unclear, ask the coordinator to confirm your assignment. After connecting the project, follow the unclear-team guidance in Section 04. Codex clarifies only the assignment it needs. Any name check is for guidance; it does not verify identity or access permissions.</p>
 <h3>Next step</h3>
 <p>Start with <a href="#W03-D02">02 · Repository setup</a>, or go to <a href="#W03-D04">04 · Team start</a> if you are already set up.</p>
 <h2 id="W03-D02">02 · Prepare GitHub, Git, and the repository</h2>
 
 <h3>What to do</h3>
 <ol>
-<li>Sign in to your own GitHub account and accept the repository invitation. Ask the coordinator if it is missing. You can read or clone this public repository without an invitation, but pushing your branch requires permission. Local preparation and read-only review can continue while invitations or authentication are unresolved; do not report uploading as complete. <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository">GitHub invitations</a></li>
-<li>Sign in to the Codex app with your own account. Git is the local tool for tracking changes; GitHub is the service for sharing them and creating PRs.</li>
-<li>Check whether Git and Python are installed. If not, tell Codex your operating system and ask for help. Follow any installation or sign-in steps that require your own action or approval. <a href="https://git-scm.com/downloads">Get Git</a>, <a href="https://www.python.org/downloads/">Get Python</a></li>
+<li>Sign in to your own GitHub account and accept the development repository invitation. Ask the coordinator if it is missing. You can read or clone this public repository without an invitation, but pushing your branch requires permission. Local preparation and read-only material review can continue while invitations or authentication are unresolved; do not report uploading as complete. <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository">GitHub invitations</a></li>
+<li><strong>Install the app first if you do not have it.</strong> In the desktop installation section of the <a href="https://learn.chatgpt.com/docs/quickstart">official quickstart</a>, download the app for Windows or macOS, sign in with your own ChatGPT account, and choose the Codex workspace. Windows users can also refer to the <a href="https://learn.chatgpt.com/docs/windows/windows-app">official Windows installation guide</a>. If you can already use Codex, do not repeat installation. Git is the local tool for tracking changes; GitHub is the service for sharing them and creating PRs.</li>
+<li>Check whether Git and Python are installed. If not, tell Codex your operating system and ask for help. Follow any installation or authentication steps that require your own action or approval. <a href="https://git-scm.com/downloads">Get Git</a>, <a href="https://www.python.org/downloads/">Get Python</a></li>
 <li><strong>Clone</strong> means downloading a working copy of a repository for the first time. Reuse an existing copy instead of cloning it again.</li>
-<li>Check the public name and email that your commits will use. Your own <code>noreply</code> address is available in GitHub Settings → Emails. Do not use another person&#39;s name or email. <a href="https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address">Commit email settings</a></li>
+<li>Check the public display name and email that your commits will use. Your own <code>noreply</code> address is available in GitHub Settings → Emails. Do not use another person's name or email. <a href="https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address">Commit email settings</a></li>
 </ol>
-<blockquote class="setup-route">
-<p><strong>First setup: you select a folder twice</strong></p>
+<blockquote class="setup-route"><p><strong>First setup: you select a folder twice</strong></p>
 <p><strong>① Create an empty preparation folder for installation help.</strong> For example, create <code>RedHarness_준비</code> and open it using Add new project in Codex. See <a href="#W03-D03">Section 03</a> for folder selection.</p>
-<p><strong>② Send the setup request below.</strong> Codex helps prepare Git/Python and clones the repository inside this folder. The cloned folder is named <code>Impes_RedHarness</code>.</p>
+<p><strong>② Send the setup request below.</strong> Codex helps prepare Git/Python and clones the development repository inside this folder. The cloned folder is named <code>Impes_RedHarness</code>.</p>
 <p><strong>③ After cloning, change the working folder.</strong> Select <strong>the new <code>Impes_RedHarness</code> folder itself</strong> at the path Codex provides and connect it as your project. The preparation folder is the starting point for installation help; development takes place in the repository folder.</p>
 <p><strong>④ Open a new chat in the repository project.</strong> Check the path in Section 03 before moving to Section 04. When Codex reports that cloning is finished, confirm <strong>the exact repository path to select next</strong>. Do not start development in the preparation-folder chat.</p>
 </blockquote>
-<p>In the following example, the folder to select after cloning is <strong><code>Impes_RedHarness</code></strong>. Keep the real folder names as shown:</p>
+<p>In the following example, the folder to select after cloning is <strong><code>Impes_RedHarness</code></strong>:</p>
 <pre><code class="language-text">RedHarness_준비/
 └─ Impes_RedHarness/  ← The actual working folder to connect in Codex after cloning
    ├─ AGENTS.md
@@ -141,11 +146,12 @@ After cloning, please tell me the exact repository root to select next and
 what to do in a new chat in the project connected to that folder.
 Please do not set Git author values before I confirm them.
 </code></pre>
-<p>To delegate applying values you have confirmed, use the following request. Replace <code>[ ]</code> with your own verified values.</p>
-<pre><code class="language-text">Please set this repository&#39;s commit author to the public values I have confirmed.
+<p>You may delegate applying <strong>your confirmed public display name and your own GitHub noreply address</strong> to this repository only. Replace <code>[ ]</code> below with verified values and send the request in <strong>your own private Codex chat</strong>. Do not send a personal email address or secrets. Do not copy author-setting values into public records or PR descriptions.</p>
+<pre><code class="language-text">Please set this repository's commit author to the public values I have confirmed.
 Display name: [your own public display name]
 Email: [your own noreply email verified in GitHub settings]
-Please change repository-local settings only and let me check the applied name and email.
+Please change repository-local settings only. Instead of printing the values again,
+please report the confirmation status and how I can check them locally.
 </code></pre>
 <p>If Git is already available, you can use a terminal yourself. These commands are for when no existing clone is available:</p>
 <pre><code class="language-powershell">git clone https://github.com/rbtjd215/Impes_RedHarness.git
@@ -154,16 +160,16 @@ git status
 git remote -v
 </code></pre>
 <h3>Expected result</h3>
-<p>The repository contains <code>AGENTS.md</code>, <code>README.md</code>, and <code>03_프로젝트/</code>, and its remote points to the development repository above. Check Git/Python versions, the root, and the remote. <strong>Report author-setting confirmation separately and finish it before uploading.</strong> Unconfirmed author values do not block local checks or safe read-only material review. Sign in through the normal login screen. Do not paste tokens, passwords, API keys, or cookies into chats or files.</p>
+<p>The repository contains <code>AGENTS.md</code>, <code>README.md</code>, and <code>03_프로젝트/</code>, and its remote points to the development repository above. Check Git/Python versions, the root, and the remote. <strong>Report author-setting confirmation separately and finish your confirmation and configuration before uploading.</strong> Unconfirmed author values do not block local checks or safe read-only material review. Sign in through the normal GitHub login screen. Do not paste tokens, passwords, API keys, or cookies into chats or files.</p>
 <h3>If you are stuck</h3>
-<p>If <code>git</code> or <code>python</code> cannot be found, tell Codex the error and your operating system. You may need to reopen the app or terminal after installation so it sees the updated path. For <code>403</code> or permission errors, check your own login, invitation acceptance, and repository access. Do not change permissions without authorization or use someone else&#39;s credentials.</p>
+<p>If <code>git</code> or <code>python</code> cannot be found, tell Codex the error and your operating system. You may need to reopen the app or terminal after installation so it sees the updated path. For <code>403</code> or permission errors, check your own login, invitation acceptance, and repository access. Do not change permissions without authorization or use someone else's credentials.</p>
 <h3>Next step</h3>
 <p>Select the cloned <strong>repository root</strong> in <a href="#W03-D03">03 · Project connection</a>.</p>
 <h2 id="W03-D03">03 · Connect a local project in Codex</h2>
 
 <h3>What to do</h3>
 <ol>
-<li>Open <code>Add new project</code> in Codex. On Windows, <code>Ctrl+O</code> opens folder selection. Labels and locations can vary by app version. <a href="https://learn.chatgpt.com/docs/windows/windows-app">Official Windows guide</a></li>
+<li>Open <code>Add new project</code> or the project-add menu in Codex. On Windows, <code>Ctrl+O</code> opens folder selection. Labels and locations can vary by app version. <a href="https://learn.chatgpt.com/docs/windows/windows-app">Official Windows guide</a></li>
 <li>Select <strong>the <code>Impes_RedHarness</code> folder itself</strong>, not the parent <code>Projects</code> folder or the <code>03_프로젝트</code> subfolder.</li>
 <li>Reuse an existing project. If you opened a preparation folder, use <code>Edit project</code> to connect the clone and select <code>Make primary</code>, or create a new project for the clone. New chats use the primary folder for default Git work and instruction discovery. <a href="https://learn.chatgpt.com/docs/projects">Official project guide</a></li>
 <li>Create a new Codex chat in that project and use <strong>Local / This computer</strong>. This guide uses the clone on your computer. <a href="https://learn.chatgpt.com/docs/environments/modes">Execution modes</a></li>
@@ -174,16 +180,16 @@ Please briefly show the current path, Git branch and remote, and whether
 AGENTS.md, README.md, and 03_프로젝트 exist. Please preserve existing changes.
 </code></pre>
 <h3>Expected result</h3>
-<p>Codex shows the working path and correct development remote. Connecting a project does not automatically upload files to GitHub. When moving to another computer, check that computer&#39;s clone and Git synchronization too.</p>
+<p>Codex shows the working path and correct development remote. Connecting a project does not automatically upload files to GitHub. When moving to another computer, check that computer's clone and Git synchronization too.</p>
 <h3>If you are stuck</h3>
-<p>If <code>AGENTS.md</code> or the Git repository is missing, check the project&#39;s primary folder. Reconnect the clone root and recheck it in a new chat. Concurrent editing in several chats using the same clone can mix changes. <strong>When resuming your unfinished task, keep its branch, folder, and changes.</strong> Use a separate worktree only when starting unrelated work or separating simultaneous edits on the same computer. Check the actual path and branch when a worktree is created.</p>
+<p>If <code>AGENTS.md</code> or the Git repository is missing, check the project's primary folder. Reconnect the clone root and recheck it in a new chat. Concurrent editing in several chats using the same clone can mix changes. <strong>When resuming your unfinished task, keep its branch, folder, and changes.</strong> Use a separate worktree only when starting unrelated work or separating simultaneous edits on the same computer. Check the actual path and branch when a worktree is created.</p>
 <h3>Next step</h3>
 <p>State your team in <a href="#W03-D04">04 · Team start</a>.</p>
 <h2 id="W03-D04">04 · Start work with your team</h2>
 
 <h3>What to do</h3>
 <p><strong>State your team and task once in a new chat.</strong> If the team is clear, Codex starts with its guide without asking your name again. When resuming, include the branch, PR number, or task ID if you know it.</p>
-<p><strong>Before editing in a new chat, for a new goal, after changing branches, or when returning after an interruption, Codex checks the repository first.</strong> Confirmed rules, the shared contract, team guides, and your own handoff take priority over an earlier chat&#39;s memory.</p>
+<p><strong>Before editing in a new chat, for a new goal, after changing branches, or when returning after an interruption, Codex checks the repository first.</strong> Confirmed rules, the shared contract, team guides, and your own handoff take priority over an earlier chat's memory.</p>
 <ol>
 <li>Check the folder, remote, branch, modified files, and untracked files.</li>
 <li>Run <code>git fetch origin</code> to obtain the latest remote state. Fetch does not merge changes into your working files.</li>
@@ -192,15 +198,16 @@ AGENTS.md, README.md, and 03_프로젝트 exist. Please preserve existing change
 <li>Codex briefly shows <strong>latest-state check and base commit / goal / edit paths / tests / next action</strong> before working.</li>
 </ol>
 <p>For <strong>continuous edits within the same goal and branch in the same chat</strong>, reuse the confirmed baseline. Recheck when the baseline or branch changes, when returning after an interruption, and immediately before uploading. The detailed procedure is <code>03_프로젝트/00_공통/작업시작_최신확인.md</code> in the development repository.</p>
-<p><strong>A failed fetch, unresolved shared-baseline difference, or conflict puts new development on hold.</strong> Diagnosis, reading, plan comparison, and recording known facts from existing work can continue. Do not label an unchecked state as current or fully ready, or start new feature edits.</p>
-<div class="table-wrap"><table>
+<p><strong>A failed fetch, unresolved shared-baseline difference, or conflict puts the affected development on hold.</strong> Diagnosis, reading, plan comparison, and recording known facts from existing work can continue. Do not label an unchecked state as current or fully ready. While awaiting approval for a common-rule exception, pause only work affected by that exception and continue independent work within the current rules.</p>
+<table>
 <thead>
 <tr>
 <th>Team</th>
 <th>Guide and default edit paths</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>A · Authentication bypass</td>
 <td><code>03_프로젝트/02_전문모듈_A/README.md</code>, its <code>AGENTS.md</code>, and that folder</td>
 </tr>
@@ -220,112 +227,108 @@ AGENTS.md, README.md, and 03_프로젝트 exist. Please preserve existing change
 <td>Your task and handoff</td>
 <td>A record in <code>03_프로젝트/91_개발작업기록/</code> matching your branch, PR, and task ID, plus actual Git state</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I would like to start Part A, authentication bypass.
-Please follow the repository&#39;s start rules to check the latest state, shared contract,
-A team guide, and my handoff, then briefly show the base commit, goal, edit paths, and tests.
+<p>The short requests below correspond to the Korean aliases in the repository rules: <code>A파트 진행</code> for A and <code>B파트 진행</code> for B. You can use either language while keeping your team clear.</p>
+<pre><code class="language-text">Part A: please proceed.
 </code></pre>
-<pre><code class="language-text">I would like to start Part B, XSS.
-Please follow the repository&#39;s start rules to check the latest state, shared contract,
-B team guide, and my handoff, then explain the next task and verification method.
+<pre><code class="language-text">Part B: please proceed.
 </code></pre>
-<p>Start Oracle and Reporter as one team and decide which part to implement within the team.</p>
-<pre><code class="language-text">I would like to start work with the Oracle·Reporter team.
-Please check the latest state, shared contract, team guide, and my handoff, then show the goal and tests.
-Please distinguish Oracle&#39;s final judgment from Reporter&#39;s responsibility to preserve the result.
+<p>Start Oracle and Reporter as one team and decide which part to implement within the team. Its Korean alias is <code>Oracle·Reporter 팀 작업</code>.</p>
+<pre><code class="language-text">Please proceed with the Oracle·Reporter team.
 </code></pre>
 <h3>Expected result</h3>
-<p>Codex confirms the applicable material and task before giving a short plan. If the record differs from the actual branch, remote, or tests, it explains the difference. It preserves your unfinished task rather than treating it as unrelated work or moving it into a new worktree every time.</p>
+<p>Codex confirms the applicable material and task before giving a short plan. If the record differs from the actual branch, remote, or tests, it explains the difference. <strong>At the first meaningful step, it creates one record linked to a task ID and automatically updates checkpoints when changes, checks, or choices occur.</strong> When resuming the same task in a new chat, it updates the same record. Students do not need to create record files or run a separate helper command.</p>
+<p>Continue your own unfinished changes. If changes remain on <code>main</code>, first confirm their ownership and scope, preserve them, and safely connect the work to an appropriate task branch. For a <strong>new goal</strong> after a branch has already been merged, use the latest confirmed baseline with a new branch, task ID, and record. Use a worktree only when unrelated changes need separation; do not discard changes or stash everything indiscriminately.</p>
 <h3>If you are stuck</h3>
 <p>If a simple “start work” request does not identify your team, Codex clarifies only the team it needs. If the team has several open tasks, clarify <strong>which branch, PR, or task ID to resume</strong>. Names do not verify identity or access.</p>
-<p>If another team&#39;s files or the shared contract need changes, explain the impact, paths, and tests first and coordinate with the affected team in the PR. Use the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/CODEX_%EA%B0%9C%EB%B0%9C%ED%98%91%EC%97%85.md">common exceptions table</a> for changing or omitting common rules. Changes or relaxations to the contract, judgment, allowed execution scope, mandatory start/recording rules, and preservation of existing work require explicit approval from the club president. This does not make approval mandatory for ordinary team feature PRs. <code>AGENTS.md</code> and <code>CODEOWNERS</code> are collaboration instructions, not folder access or editing controls.</p>
+<p>If another team's files or the shared contract need changes, explain the impact, paths, and tests first and coordinate with the affected team in the PR. Use the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/CODEX_%EA%B0%9C%EB%B0%9C%ED%98%91%EC%97%85.md">common exceptions table</a> for changing or omitting common rules. Changes or relaxations to the contract, judgment, allowed execution scope, mandatory startup/recording rules, and preservation of existing work require explicit approval from the club president. This does not make approval mandatory for ordinary team feature PRs. Pause only work affected by the exception while approval is pending. <code>AGENTS.md</code> and <code>CODEOWNERS</code> are collaboration instructions, not folder access or editing controls.</p>
 <h3>Next step</h3>
-<p>For first setup, go to <a href="#W03-D05">05 · Environment checks</a>. Otherwise, use <a href="#W03-D06">06 · Plan review</a> or <a href="#W03-D07">07 · Feature development</a>.</p>
-<h2 id="W03-D05">05 · Check your environment and prepare the first upload</h2>
+<p>If this is your first setup, go to <a href="#W03-D05">05 · Environment checks</a>. If you are already prepared, use <a href="#W03-D06">06 · Plan review</a> or <a href="#W03-D07">07 · Feature development</a>.</p>
+<h2 id="W03-D05">05 · Check the local environment and create the first automatic record</h2>
 
 <h3>What to do</h3>
-<p>Installation alone does not prove readiness. <strong>Check local readiness, record upload, PR creation, and merging into main separately.</strong></p>
-<div class="table-wrap"><table>
+<p>Do not judge readiness from a statement that installation is finished. <strong>Verify local preparation, record upload, PR status, and main merging separately.</strong></p>
+<table>
 <thead>
 <tr>
 <th>Stage</th>
-<th>What to confirm</th>
-<th>What can follow</th>
+<th>What to verify</th>
+<th>What can continue</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>Local readiness</td>
-<td>Correct root/remote, Git/Python, current rules, and required local tests passing. Report author confirmation separately and finish it before upload.</td>
-<td>Safe read-only review of your plan or existing code and comparison of a minimal adoption option</td>
+<tbody>
+<tr>
+<td>Local preparation</td>
+<td>Correct root, remote, Git/Python, current rules, and actual required checks passing. Report author-setting confirmation separately and finish it before uploading.</td>
+<td>Safe read-only review of your own plan or code and comparison of minimal adoption options</td>
 </tr>
 <tr>
-<td>Shared upload readiness</td>
-<td>Your author values confirmed, public diff reviewed, and your record&#39;s remote branch SHA and file verified</td>
-<td>First upload completion report; PR status remains separate</td>
+<td>Record sharing verified</td>
+<td>Your author values confirmed, public diff reviewed, and your record's actual remote branch SHA and file verified</td>
+<td>Report sharing as complete; verify PR status separately</td>
 </tr>
 <tr>
 <td>PR created</td>
-<td>Actual URL, head, and record link verified</td>
-<td>Review/integration in the order your team chooses</td>
+<td>Actual PR URL, head, and record link verified</td>
+<td>Follow the team's chosen review and integration sequence</td>
 </tr>
 <tr>
 <td>Merged into main</td>
 <td>Actual main update verified</td>
-<td>Shared baseline updated; this is not a prerequisite for environment readiness or plan review</td>
+<td>Shared baseline updated; this is not a prerequisite for environment preparation or plan review</td>
 </tr>
-</tbody></table></div>
-<p>Have Codex read the repository&#39;s <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%ED%99%98%EA%B2%BD%EC%A4%80%EB%B9%84_%EC%99%84%EB%A3%8C%ED%99%95%EC%9D%B8.md">environment readiness procedure</a> and <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/91_%EA%B0%9C%EB%B0%9C%EC%9E%91%EC%97%85%EA%B8%B0%EB%A1%9D/%ED%99%98%EA%B2%BD%EC%A4%80%EB%B9%84_%EA%B8%B0%EB%A1%9D_%ED%85%9C%ED%94%8C%EB%A6%BF.md">setup record template</a>. Check the current files and actual repository state before applying them.</p>
+</tbody>
+</table>
+<p>Ask Codex to read the development repository's <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%ED%99%98%EA%B2%BD%EC%A4%80%EB%B9%84_%EC%99%84%EB%A3%8C%ED%99%95%EC%9D%B8.md">setup procedure</a> and <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/91_%EA%B0%9C%EB%B0%9C%EC%9E%91%EC%97%85%EA%B8%B0%EB%A1%9D/%ED%99%98%EA%B2%BD%EC%A4%80%EB%B9%84_%EA%B8%B0%EB%A1%9D_%ED%85%9C%ED%94%8C%EB%A6%BF.md">setup record template</a>. Check the actual repository files and remote update state first.</p>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I am working on Part A. Please check environment readiness using the repository rules.
-Please run the required commands in the current verification guide and record the actual results for this task.
-Please distinguish local readiness, author confirmation, record upload, and PR status.
-Once required local checks pass, please offer safe read-only review of my plan or existing code.
-Please show the record path and public diff first; do not commit, push, or create a PR yet.
-Please identify the upload as incomplete and tell me the next action.
+<pre><code class="language-text">Part A: please proceed.
+Please run the environment preparation checks.
 </code></pre>
-<p>For B, change the first line to Part B; for the Oracle·Reporter team, name that team. This request covers <strong>local checks, record writing, and public diff review only</strong>. Request commit, push, and PR creation separately in <a href="#W03-D09">Section 09</a>. Providing a file or reviewing a plan is not permission to publish all of it.</p>
-<p>Codex reads and runs the current commands from the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%EA%B2%80%EC%A6%9D/README.md">development verification guide</a>. This guide does not maintain a separate fixed copy of test commands or implementation code. Distinguish available checks from proposals; never claim to have run a missing test.</p>
-<p>A <strong>mock</strong> check uses prepared artificial inputs and outputs instead of a real attack. The existing A/B JSON examples check fields, stage order, status, and evidence links; regression tests check whether invalid inputs are rejected. PASS in <code>mock_a_pass.json</code> is Oracle&#39;s example result, not a final judgment by module A. The reproduction check covers <strong>synthetic envelope generation → complete-structure validation → reference Reporter storage and rereading</strong>, then removes temporary files. It is a synthetic reference implementation, not a test that calls the real team modules or Oracle judgment function. These checks do <strong>not verify actual team code, judgment-function calls, evidence authenticity, or real lab attacks</strong>. Read the current verification guide for available checks and exact commands.</p>
+<p>For B, replace the first line with <code>Part B: please proceed.</code> For the Oracle·Reporter team, use <code>Please proceed with the Oracle·Reporter team.</code> Codex reads the current rules and verification guide, then performs <strong>actual local checks, automatic recording, and public diff review</strong>. This check request does not delegate sharing. To upload, use the sharing request in <a href="#W03-D09">Section 09</a>. Providing files or reviewing a plan does not authorize publishing all of that material.</p>
+<p>Codex reads and runs the commands from the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%EA%B2%80%EC%A6%9D/README.md">development verification guide</a>. This teaching document does not keep a separate fixed copy of verification commands or code. Distinguish currently available checks from proposals, and do not claim to have run a check that does not exist.</p>
+<p>A <strong>mock</strong> uses prepared fictional inputs and outputs instead of a real attack. Existing A/B JSON examples check fields, stage order, and links between status and evidence. Regression tests check that invalid inputs are rejected. PASS in <code>mock_a_pass.json</code> is Oracle's example status, not a final judgment by the A module. The synthetic reference reproduction checks <strong>synthetic envelope generation → complete-structure validation → reference Reporter storage and rereading</strong>, then removes temporary files. It is a purely synthetic reference implementation; it does not verify calls to actual team modules or Oracle judgment functions. Together with the separate JSON complete-structure check, it verifies contract flow. <strong>Actual team code, judgment-function calls, evidence authenticity, and real lab attacks remain unverified by these synthetic checks.</strong> Use the verification guide for available checks and exact commands.</p>
 <h3>Expected result</h3>
 <ul>
-<li>Codex shows the root, remote, tools, author-confirmation status, and the actual required commands&#39; exit codes and test counts. <strong>Zero tests, a skipped required check, or a failure is not a pass.</strong></li>
-<li><strong>The earlier 19 passing tests were a contract-format regression example.</strong> Current test types and counts may vary by base commit; matching that number is not the completion criterion.</li>
-<li>Codex writes results, the base commit, blockers, and next actions to <code>03_프로젝트/91_개발작업기록/YYYY-MM-DD_&lt;team&gt;_setup_&lt;고유값&gt;.md</code>. Students check facts and intent instead of filling a separate form.</li>
-<li><strong>After required local checks pass</strong>, Codex requests your plan/existing code or reviews material already provided. Invitation, authentication, or push issues should not block that read-only comparison.</li>
-<li>Codex first shows the record path and public diff. When you request uploading separately in <a href="#W03-D09">Section 09</a>, it uploads only the public setup record to your <code>codex/</code> branch and compares local HEAD with the actual remote branch SHA and file. Report PR creation failure or a pending merge separately too.</li>
+<li>Codex shows the root, remote, tools, author-confirmation status, and actual required commands' exit codes and test counts. <strong>Zero tests, required checks skipped, or failures are not passes.</strong></li>
+<li>The earlier <strong>19 passing tests are an example of contract-format regression checks</strong>. Current check types and counts depend on the baseline commit; matching that number is not a completion criterion.</li>
+<li>Codex uses the repository's record tool and template to create or update this task's record in <code>03_프로젝트/91_개발작업기록/</code>. Results, base commit, blockers, and next actions are recorded. Students check the facts and intent.</li>
+<li><strong>After required local checks pass, Codex must guide you to the next material.</strong> It requests your own plan or existing implementation. If already supplied, it continues read-only review of the accessible original. If you have no material, work together on a minimal plan using the team README and mocks. Invitation, authentication, or push failures do not require waiting to compare material.</li>
+<li>Codex shows the record path and public diff. After the sharing request in <a href="#W03-D09">Section 09</a>, it uploads only the publishable setup record to your <code>codex/</code> branch and compares local HEAD with the remote branch SHA, actual file, and PR. Report sharing failure, a missing PR, and lack of merging separately.</li>
 </ul>
-<p>Your first PR may contain only a setup record. Do not add pair review, module-lead approval, or main merging as readiness requirements. Actual GitHub permissions and protection settings are separate and are not changed by this guide.</p>
+<p>The first PR may contain just the setup record. Pair review, module-lead approval, and merging into main are not readiness requirements. Actual GitHub permissions and protection settings are separate and are not changed by this guide.</p>
 <h3>If you are stuck</h3>
-<p>For a failed or skipped local check, record the item, confirmed cause, and next action. If local tests pass but push fails, report <strong>“local readiness checked / record upload incomplete / PR not created or actual verified status.”</strong> Safe read-only plan review can continue, but do not claim the shared upload is complete.</p>
+<p>For a failed or skipped local check, record the item, confirmed cause, and next action, and report preparation as incomplete. <strong>Failures and skips are results to record too.</strong> If safe to publish, you can share the record or propose an unfinished draft PR. Sharing does not turn a failed check into a pass. If local tests pass but push fails, report <strong>“local readiness checked / record upload incomplete / PR not created or actual verified status.”</strong> Safe read-only plan review can continue.</p>
 <p>If only PR creation fails and the record upload is verified, use the manual PR link and stated failure reason. If fetch itself fails, pause new development and continue only reading, diagnosis, or recording known facts.</p>
-<p>Readiness checks do not automatically prove real authentication-bypass/XSS success, authentic evidence, or a running real lab. Current offline setup checks do not require API keys or paid model calls. Local test success, GitHub CI execution, and applied branch protection are different facts.</p>
+<p>Readiness checks do not automatically prove real authentication-bypass/XSS success, authentic evidence, or a running real lab. Current offline setup checks do not require API keys or paid model calls. Local test success, GitHub CI execution, and applied protection settings are separate facts.</p>
 <h3>Next step</h3>
-<p>After required local checks pass, review <a href="#W03-D06">06 · Your plan or existing code</a>. To publish the setup record after reviewing its public diff, use the separate request in <a href="#W03-D09">09 · Upload and PR</a>. If you have no plan, use the team guide and mocks to develop a small one; resolve incomplete upload items separately.</p>
+<p>After required local checks pass, review <a href="#W03-D06">06 · Your plan or existing code</a>. To share the setup record, use the one-sentence request in <a href="#W03-D09">09 · Sharing and PRs</a>. If you have no plan, use the team guide and mocks to develop a small one; resolve incomplete upload items separately.</p>
 <h2 id="W03-D06">06 · Review your plan or existing implementation</h2>
 
 <h3>What to do</h3>
-<p>Attach <strong>your own team&#39;s harness plan</strong> or existing prototype to Codex, or provide a local file path. Once required local checks pass, safe read-only review can continue without waiting for record upload or PR merging. Your team chooses the adoption scope. Providing material does not authorize copying or publishing all of it.</p>
+<p>Attach <strong>your own team's harness plan</strong> or existing prototype to Codex, or provide a local file path. Once required local checks pass, safe read-only review can continue without waiting for record upload or PR merging. Your team chooses the adoption scope. Providing material does not authorize copying or publishing all of it.</p>
 <p>Codex should not repeatedly request material already supplied. However, if a new chat or another computer cannot access the original, it should explain <strong>the earlier provision and why the file is inaccessible now</strong>, then ask for the necessary reattachment or accessible path. It must not reconstruct contents from memory. Record only public-safe review summaries and adoption decisions; do not publish private originals or personal home paths.</p>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I am working on Part B. Please read my attached harness plan or the existing code at the supplied path
+<pre><code class="language-text">Part B: please read my attached harness plan or the existing code at the supplied path
 and compare it with the shared contract and B team guide.
 Please distinguish publishable code from sensitive results, and show a table of differences in
 module naming, input/output fields, and its own judgment versus the common Oracle.
 Please propose the smallest adoption option, edit paths, and verification method.
 Our team will choose the adoption scope. Please do not copy everything yet.
 </code></pre>
-<p>For A, begin with “Part A, authentication-bypass plan…”. The Oracle·Reporter team reviews its own material in the same way.</p>
+<p>For A, begin with <code>Part A: please review my authentication-bypass plan…</code>. The Oracle·Reporter team reviews its own material in the same way.</p>
 <h3>Expected result</h3>
 <p>Codex compares the following:</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>Item</th>
 <th>Questions</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Roles and names</td>
 <td>Does it match A=authentication bypass and B=XSS? If older XSS code calls itself A, how should it map to B?</td>
 </tr>
@@ -335,7 +338,7 @@ Our team will choose the adoption scope. Please do not copy everything yet.
 </tr>
 <tr>
 <td>Judgment responsibility</td>
-<td>How can the prototype&#39;s Oracle/judgment code avoid a second final judgment?</td>
+<td>How can the prototype's Oracle/judgment code avoid a second final judgment?</td>
 </tr>
 <tr>
 <td>Public scope</td>
@@ -345,16 +348,18 @@ Our team will choose the adoption scope. Please do not copy everything yet.
 <td>Minimal adoption and checks</td>
 <td>What small adapter or other change can connect first, and which tests verify it?</td>
 </tr>
-</tbody></table></div>
-<p>The <strong>shared contract&#39;s core meanings</strong> are below. Use <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/PROJECT_SPEC.md">PROJECT_SPEC.md</a> for all fields and exception handling.</p>
-<div class="table-wrap"><table>
+</tbody>
+</table>
+<p>The <strong>shared contract's core meanings</strong> are below. Use <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/PROJECT_SPEC.md">PROJECT_SPEC.md</a> for all fields and exception handling.</p>
+<table>
 <thead>
 <tr>
 <th>Result status</th>
 <th>Meaning</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>PASS</td>
 <td>Externally verifiable success evidence exists</td>
 </tr>
@@ -370,69 +375,112 @@ Our team will choose the adoption scope. Please do not copy everything yet.
 <td>NOT_RUN</td>
 <td>Execution did not occur</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <p>Dispatcher/A/B use <code>NOT_RUN</code> before execution and <code>UNKNOWN</code> after execution until Oracle judges. <strong>Oracle makes the final PASS/FAIL judgment once</strong>, and Reporter preserves its status and evidence. Teams can design domain-specific observation and judgment strategies. These execution-result statuses are distinct from test <code>PASS/FAIL/SKIP</code> in task records.</p>
 <h3>If you are stuck</h3>
-<p>If there is no plan, ask: <code>Please help us choose a first minimal plan from our team README and mocks.</code> Do not invent submission dates or claim a plan is already complete. For an exception to common rules, use the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/CODEX_%EA%B0%9C%EB%B0%9C%ED%98%91%EC%97%85.md">exceptions table</a>, explain the reason, impact, and verification, and obtain <strong>explicit club-president approval</strong>. Omitting or relaxing mandatory startup, recording, or preservation rules is included. Approval cannot authorize publishing secrets, personal data, or sensitive raw logs. Internal team planning, implementation, and review are chosen by the team.</p>
+<p>If there is no plan, ask: <code>Please help us choose a first minimal plan from our team README and mocks.</code> Do not invent submission deadlines or claim a plan is already complete. For an exception to common rules, use the <a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/CODEX_%EA%B0%9C%EB%B0%9C%ED%98%91%EC%97%85.md">exceptions table</a>, explain the reason, impact, and verification, and obtain <strong>explicit club-president approval</strong>. Omitting or relaxing mandatory startup, recording, or preservation rules is included. Approval cannot authorize publishing secrets, personal data, or sensitive raw logs. Internal team planning, implementation, and review procedures are chosen by the team.</p>
 <h3>Next step</h3>
-<p>Proceed with the small adoption option your team chooses in <a href="#W03-D07">07 · Feature development</a>.</p>
+<p>Proceed with the small adoption option your team chooses in <a href="#W03-D07">07 · Feature development</a>. If the first feature after setup is a new goal, Codex preserves the setup record and uncommitted changes, then switches to a new development branch, task ID, and development record. Waiting for setup-record sharing or merging is not a feature-development prerequisite. The actual remote-state checks and their hold conditions still apply.</p>
 <h2 id="W03-D07">07 · Develop one small feature</h2>
 
 <h3>What to do</h3>
-<p>State <strong>the goal, edit scope, and completion criterion</strong> together. Use a task-specific <code>codex/</code> branch for a new goal; reuse your existing branch, record, and changes when continuing an unfinished task. Separate unrelated changes or concurrent work only when needed, using a worktree or another suitable method. Coordinate overlapping files and discuss cross-team effects in the PR.</p>
+<p>State <strong>the goal, edit scope, and completion criterion</strong> together. Use a task-specific <code>codex/</code> branch for a new goal; reuse your existing branch, record, and changes when continuing your own unfinished task. Separate unrelated changes or concurrent work only when needed, using a worktree or another suitable method. Coordinate overlapping files and discuss cross-team effects with the affected team in the PR.</p>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I am working on Part A. Please implement the shared-envelope return portion of the
+<pre><code class="language-text">Part A: please implement the shared-envelope return portion of the
 authentication-bypass module using the first adoption option our team selected.
 Please check whether this resumes my task or starts a new goal and prepare the appropriate codex/ branch.
 The default edit scope is 03_프로젝트/02_전문모듈_A/.
-Please follow the shared contract and Oracle&#39;s final-judgment responsibility. If changes outside
+Please follow the shared contract and Oracle's final-judgment responsibility. If changes outside
 this scope are needed, please explain the impact and reason first.
 Please choose a completion criterion we can check with mocks and record actual verification results.
 </code></pre>
-<pre><code class="language-text">I am working on Part B. Please implement the small part of our existing XSS code
+<pre><code class="language-text">Part B: please implement the small part of our existing XSS code
 that our team selected for adoption in 03_프로젝트/03_전문모듈_B/.
 Please connect it through the shared envelope and prevent its own final judgment
 from duplicating the common Oracle. Please do not bring in raw runs/ or secrets.
 Please run relevant tests and record the results and next actions.
 </code></pre>
+<pre><code class="language-text">Please proceed with the Oracle·Reporter team.
+First, please read the current repository's AGENTS.md, shared contract,
+team guide, and my handoff. Please implement one small feature our team selects
+in 03_프로젝트/04_Oracle_Reporter/.
+For example, choose Oracle handling insufficient evidence as UNKNOWN after actual execution,
+or Reporter preserving Oracle's status and evidence in storage and rereading them.
+Please have Oracle make the final judgment once and keep Reporter from changing it.
+Please choose a mock test that actually calls the new code and record results and next actions.
+If edits outside the scope are needed, please explain their impact and reason first.
+</code></pre>
 <h3>Expected result</h3>
 <p>Codex implements the selected feature and verifies <strong>a small completion criterion that actually calls your code</strong>. Your team might choose a module function returning the shared envelope, Oracle handling insufficient evidence, or Reporter preserving status/evidence. Passing fixed fixtures alone does not verify newly written code.</p>
-<p>Keep execution commands and expected results in the relevant team README/current verification guide instead of copying implementation code into this teaching document. Group meaningful changes, failures, and design choices into task checkpoints. Distinguish code written, tests passed, uploaded, and merged into main.</p>
+<p>Keep execution commands and expected results in the relevant team README/current verification guide instead of copying implementation code into this teaching document. Codex groups meaningful changes, failures, and design choices into task checkpoints. Distinguish code written, tests passed, shared, and merged into main. <strong>You may reuse verified results for the same code, inputs, and environment if you state their scope and execution time.</strong> Run relevant checks when code, the contract, inputs, or the environment changes, or when the current mandatory procedure requires them again. Do not present an old result as a new run.</p>
 <h3>If you are stuck</h3>
-<p>If the lab and allowed scope are not confirmed, use mocks. The contract&#39;s allowed targets are currently unspecified, so do not automatically run against real services. A B mock adapter does not mean the whole prototype was adopted or a real XSS exercise succeeded.</p>
+<p>If the lab and allowed scope are not confirmed, use mocks. The contract's allowed targets are currently unspecified, so do not automatically run against real services. A B mock adapter does not mean the whole prototype was adopted or a real XSS exercise succeeded.</p>
 <p>Each team chooses its approval and review procedures. Pair review or module-lead approval is not a common requirement for every change. Integration and main merging follow actual repository agreements and GitHub settings, separately from president approval for common-rule exceptions.</p>
 <h3>Next step</h3>
 <p>Before stopping, request <a href="#W03-D08">08 · Wrap-up recording</a>.</p>
 <h2 id="W03-D08">08 · Wrap up a chat or work session and record ideas</h2>
 
 <h3>What to do</h3>
-<p><strong>Use the request below when ending a chat or stopping work, even if the feature is unfinished.</strong> You can also use it before a break or moving to another chat. “Finish work” means wrapping up this conversation, not declaring the whole project complete. You do not need to write the record yourself. <strong>Check that Codex&#39;s facts, choices, and next actions match your intent.</strong></p>
+<p><strong>Use the request below when ending a chat or stopping work, even if the feature is unfinished.</strong> You can also use it before a break or moving to another chat. Wrapping up means organizing this task; it does not declare the whole project complete. You do not need to write the record yourself. <strong>Check that Codex's facts, choices, and next actions match your intent.</strong></p>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I will stop here for today. Please wrap up this chat and record the work.
-Following the repository&#39;s recording rules, please summarize actual changes, attempts,
-idea choices, tests, unfinished items, and next actions in this task&#39;s record.
-Please briefly show changed files, verification, blockers, local/remote/PR status, and one next action.
+<pre><code class="language-text">Please read the current repository's AGENTS.md,
+03_프로젝트/00_공통/CODEX_개발협업.md, and
+03_프로젝트/91_개발작업기록/README.md first, then wrap up this work.
+Please compare actual Git changes with verifiable test results and create or update
+this task's record file. Please mark anything you cannot verify as 미확인 (unverified).
+Please give me the record link, sharing status, branch/PR/task ID, and next action.
 </code></pre>
-<p>After an important intermediate step, you can also ask: <code>Please record a checkpoint up to this point.</code></p>
+<p>This request asks Codex to read the rules and actually update a file. Short wrap-up aliases are also available, but use the request above when starting out. <strong>If it only replies “Understood” without a record link or update result, the wrap-up has not been verified.</strong> Ask again: <code>Please read the rules, create or update the actual task record file, and show its link and the four fields.</code> If file access or tool execution is blocked, check the reason and remaining work.</p>
+<p>This corresponds to <code>작업을 마무리해주세요</code> in the repository rules. The default action is <strong>recording and guidance for the next start</strong>. To upload to GitHub, use the sharing request in <a href="#W03-D09">Section 09</a>. Existing Korean aliases <code>작업 종료</code>, <code>인계</code>, <code>오늘 작업은 여기까지</code>, and <code>채팅 마무리</code> also request recording; those phrases do not grant sharing permission.</p>
 <h3>Expected result</h3>
-<p>Codex creates or updates <strong>this task&#39;s own file</strong> in <code>03_프로젝트/91_개발작업기록/</code> and gives you its link. Two people should not edit one shared session log. Briefly record actual attempts/results, chosen ideas, and confirmed reasons. Mark unverified ideas as proposed, untested, or deferred; write “none” when there were no such ideas. Do not invent attempts or decisions to fill a template. Use the record link and key changes/checks in the PR instead of repeating a long record.</p>
-<p>Do not store the full chat, hidden AI reasoning, guessed decisions, API keys, cookies, or personal data. Trace changes through Git commits and PRs rather than repeatedly collecting real names.</p>
+<p>Codex updates <strong>the one task record created during the work</strong>. A new chat continues the same record for the same branch, PR, and task ID. Two people do not edit one shared session log. Record actual changed files, attempts and results, adopted/deferred/rejected ideas and confirmed reasons, test PASS/FAIL/SKIP, blockers, base commit/PR, and next actions. Mark unverified ideas as such. Do not invent experiments or decisions to fill a record.</p>
+<p>Check the final short handoff using these <strong>four fields</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Record</td>
+<td>This task's record link and a summary of verification and unfinished work</td>
+</tr>
+<tr>
+<td>Sharing status</td>
+<td>Local only / remote upload verified / PR verified / failure or unverified state and reason</td>
+</tr>
+<tr>
+<td>Next start</td>
+<td>Branch, PR, and task ID to resume. Use none or unverified for missing information</td>
+</tr>
+<tr>
+<td>Next action</td>
+<td>One action for the next person</td>
+</tr>
+</tbody>
+</table>
+<p>Codex automatically updates checkpoints during meaningful work. You can also ask: <code>Please record a checkpoint up to this point.</code> Do not store the full chat, hidden AI reasoning, guessed decisions, keys, cookies, or personal data. Use the record link and key changes/checks in the PR instead of copying a long record.</p>
 <h3>If you are stuck</h3>
-<p>Do not assume recording continues after closing the app. Use checkpoints while working and an explicit wrap-up request. If you closed without requesting a record, compare actual Git changes with the last checkpoint in the next chat and restore only verifiable facts. Do not fill gaps with tests you never ran or decisions you cannot confirm.</p>
-<p>A wrap-up request does not mean commit, push, PR creation, or main merging is complete. Have Codex distinguish local/remote/PR states and use the next section when you want to upload.</p>
+<p>Here, <strong>automatic recording means Codex writes and updates files during active work under the repository rules and tools</strong>. It does not guarantee recording after the app closes. If you closed without a wrap-up request, compare actual Git changes with the last checkpoint in the next chat and restore only verifiable facts.</p>
+<p>After a record-only wrap-up, the work may still be local. If another computer or member needs to resume it, check sharing status and use Section 09. Failures, skips, and unfinished work can be organized too. Do not label a wrap-up as preparation complete, feature complete, or merged into main.</p>
 <h3>Next step</h3>
-<p>Review and upload only publishable changes through <a href="#W03-D09">09 · Upload and PR</a>.</p>
-<h2 id="W03-D09">09 · Commit, push, open a PR, and trace changes</h2>
+<p>Use <a href="#W03-D10">10 · Resume</a> to continue locally, or <a href="#W03-D09">09 · Sharing and PRs</a> to upload to GitHub.</p>
+<h2 id="W03-D09">09 · Share work, use PRs, and trace changes</h2>
 
 <h3>What to do</h3>
-<div class="table-wrap"><table>
+<p><strong>You can request wrapping up and sharing together.</strong> Codex checks the current remote, this task's changes and records, the PR description's public scope, and exact files before sharing on a task branch. Exclude sensitive originals and unrelated existing changes.</p>
+<table>
 <thead>
 <tr>
 <th>Term</th>
 <th>What it actually does</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Branch</td>
 <td>A Git line of work separating this task</td>
 </tr>
@@ -452,54 +500,59 @@ Please briefly show changed files, verification, blockers, local/remote/PR statu
 <td>Merge into <code>main</code></td>
 <td>Adds PR changes to the shared baseline branch</td>
 </tr>
-</tbody></table></div>
-<p><strong>Push and PR creation alone do not change <code>main</code>.</strong> Merge when appropriate under your team&#39;s integration process. Select only publishable code, setup records, and task records; exclude unrelated existing changes. Recheck the remote before uploading and review the public scope of the diff, record, and PR description.</p>
+</tbody>
+</table>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">Before uploading, please recheck the remote and review changed files, the task record, and public scope.
-Please commit and push only this task&#39;s publishable changes
-to my codex/ branch and create a PR.
-Please exclude unrelated existing changes.
-Please describe the reason, affected paths, actual tests, unresolved items, and next actions in the PR.
-Please verify local HEAD against the remote branch and PR, and give me the links.
-Please do not merge this PR into main without a separate decision.
+<pre><code class="language-text">Please read the current repository's AGENTS.md,
+03_프로젝트/00_공통/CODEX_개발협업.md, and
+03_프로젝트/91_개발작업기록/README.md first, then wrap up and share this work.
+Please commit and push only this task's publishable changes and record, and update its PR.
+Please verify the actual remote SHA, files, and PR status,
+then give me the record link and the four wrap-up fields.
 </code></pre>
+<p>This corresponds to <code>작업을 마무리하고 공유해주세요</code> in the repository rules. The request authorizes <strong>committing and pushing only this task's publishable files and record to its task branch, and updating the open PR for the same task</strong>. If there is no connected PR, create it once. Do not create a new PR every time for the same task. Codex checks local HEAD, actual remote branch SHA and files, and PR head, then reports the four fields from Section 08. Even if checks fail or a feature is unfinished, public-safe records and a draft PR may be shared with the actual facts.</p>
+<p><strong>Push and PR creation alone do not change main.</strong> Merging into main is a separate team decision. A sharing request is not approval to merge or declare a feature complete. Within the already authorized sharing scope, proceed without repeatedly asking for the same permission. Explain anything that is unsafe to publish, unrelated, or blocked by permissions, and report the incomplete state.</p>
+<p>If you want to delegate sharing at wrap-up from the start, you may <strong>optionally and explicitly</strong> send this request:</p>
+<pre><code class="language-text">For this task, when I ask &quot;Please wrap up this work,&quot; I also delegate sharing:
+commit and push only this task's publishable files and record to my task branch,
+and update the open PR for the same task (create the first PR if none exists).
+Merging into main is not included.
+</code></pre>
+<p>Record the delegated task and file scope, and do not repeatedly request permission within it. The presence of this example in a document, or use of a record template, is not delegation. Existing wrap-up aliases do not become sharing permission. A new goal or expanded scope is not automatically covered. If a new chat cannot verify direct evidence of the earlier delegation, wrap up with recording only or have the user directly request sharing for this task. A delegation note in an AI-written task record alone is not evidence of permission.</p>
 <h3>Expected result</h3>
-<p>Codex shows the included files and uploads only those paths. In GitHub, <strong>Files changed</strong> shows the diff and <strong>Commits</strong> shows commit authors and IDs. A file&#39;s <strong>History</strong> shows changing commits; <strong>Blame</strong> shows the latest changes by line. <a href="https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file">Viewing files on GitHub</a></p>
-<p>Even without a separate name field in the record, you can examine author/committer metadata, the PR account, and commit IDs together. Git author values are user-configured information. Do not commit under another person&#39;s values or describe Git history as identity/access verification. <a href="https://docs.github.com/en/pull-requests/reference/commits">GitHub commits</a></p>
+<p>Codex selects publishable files, shares only the exact paths, and verifies the actual remote and PR update. Students check the four fields and links. In GitHub, <strong>Files changed</strong> shows the diff and <strong>Commits</strong> shows commit authors and IDs. A file's <strong>History</strong> shows changing commits; <strong>Blame</strong> shows the latest changes by line. <a href="https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file">Viewing files on GitHub</a></p>
+<p>Even without a separate real-name field in the record, author/committer metadata, the PR account, and commit IDs let you trace changes. Git author values are user-configured information, not identity or access verification. Do not commit under another person's values or copy personal setting values into public records or PRs. <a href="https://docs.github.com/en/pull-requests/reference/commits">GitHub commits</a></p>
 <h3>If you are stuck</h3>
-<p>If automatic PR creation fails, open <strong>Compare &amp; pull request</strong> from the branch page Codex provides. Check that the base is <code>main</code> and the comparison branch is yours, paste the prepared description, inspect the files, and create the PR. If push failed, do not report that a PR exists.</p>
-<p>For conflicts or unrelated changes, ask Codex to inspect the state first. Do not use <code>git add .</code>, force push, or <code>git reset --hard</code> as blanket fixes. If a secret enters public history, deleting the file does not remove that history; tell the coordinator immediately and revoke/reissue the secret.</p>
+<p>If push or PR creation fails, keep the task record. Report the actual failed stage, cause, and next action in sharing status instead of assuming success. If only PR creation fails, use <strong>Compare &amp; pull request</strong> from the branch page Codex provides. Check that the base is <code>main</code> and the comparison branch is yours, then create the PR using the prepared description.</p>
+<p>For conflicts, sensitive changes, or common exceptions, resolve the affected part first. Do not use <code>git add .</code>, force push, or <code>git reset --hard</code> as blanket fixes. If a secret enters public history, deleting the file does not remove that history; tell the coordinator and revoke/reissue the secret. Verify actual GitHub permissions, checks, and protection settings separately from this document.</p>
 <h3>Next step</h3>
-<p>Begin your next chat with <a href="#W03-D10">10 · Resume</a>.</p>
+<p>Begin your next chat with <a href="#W03-D10">10 · Resume</a>. Continue the same task with the same record and PR. A new goal after an already merged task uses a new branch and task ID.</p>
 <h2 id="W03-D10">10 · Resume in a new chat: quick requests</h2>
 
 <h3>What to do</h3>
-<p>In a new chat in the same local project, state <strong>your team and the task to resume</strong>. Include a branch, PR number, or task ID if known. If not, start by checking the current branch.</p>
-<p>Codex follows <strong>check existing changes → check latest remote state → read current rules/contract → compare your handoff → next action</strong>. Select the handoff by current branch → connected PR → task ID. <strong>The newest file in your team may describe someone else&#39;s work.</strong> If several candidates remain, clarify only the task you need.</p>
-<p>Continue your unfinished changes in the same branch and folder. Use a worktree only to separate unrelated work or concurrent edits on the same computer. On another computer, first check the clone, your remote branch, and PR; local-only changes do not automatically follow you.</p>
+<p>In a new chat in the same local project, state <strong>your team and the task to resume</strong>. Including the branch, PR, and task ID from Section 08's final handoff helps Codex find it. If unknown, check the current branch first and clarify only the task whose selection is genuinely unclear.</p>
+<p>Codex follows <strong>check existing changes → check latest remote state → read current rules/contract → compare your handoff → next action</strong>. Select the handoff by current branch → connected PR → task ID and edit paths. <strong>The newest record in your team may describe someone else's work.</strong> Continue the same record and preserve your unfinished changes for the same task.</p>
+<p>On another computer, first check its clone, your remote branch, and PR. Local-only changes do not automatically follow you. For a new goal on an already merged branch, existing changes on main, or mixed unrelated work, follow Section 04's safe-start boundaries.</p>
 <h3>Request to send to Codex</h3>
-<pre><code class="language-text">I am working on Part B and would like to resume my previous task.
-Please find my handoff using the current branch and its connected PR/task ID,
-then compare the latest remote state, current rules, shared contract, and actual Git changes.
-Please explain differences, unfinished items, and one next action.
+<pre><code class="language-text">Part B: please proceed. I would like to resume my previous task.
 </code></pre>
-<p>If you know the PR number, add: <code>I would like to resume the work in PR #number.</code> After an unexpected closure, use:</p>
-<pre><code class="language-text">I closed the previous chat without a wrap-up record.
-Please compare the current Git changes with the last checkpoint,
-restore only verifiable facts, and define the scope to resume.
+<p>If known, add <code>Branch: … / PR: … / Task ID: …</code>. After closing without a wrap-up record, use:</p>
+<pre><code class="language-text">I closed the previous chat without a wrap-up record. Please compare the current Git changes
+with the last checkpoint, restore only verifiable facts, and define the scope to resume.
 </code></pre>
 <h3>Expected result</h3>
-<p>Codex identifies your task files, base commit, PR, and remaining tests. When readiness checks, the record, and actual state match, it does not repeat setup or unnecessarily request the plan again. Reuse the confirmed baseline for continuous edits within a goal; recheck the remote for a new chat, goal, branch, return after interruption, and before uploading.</p>
-<p>Read previously provided material from an accessible path. If an attachment is unavailable in this chat or exists only on another computer, explain its provision history and the current access problem before requesting only what is needed. Do not guess contents because a record says “provided.”</p>
+<p>Codex compares your task record, base commit, PR, and remaining checks, then explains one next action. When readiness checks, the record, and actual state match, it does not repeat setup or unnecessarily request the plan again. Reuse the confirmed baseline for continuous edits within a goal; recheck the remote for a new chat, goal, branch, return after interruption, and before sharing.</p>
+<p>Read previously provided material from an accessible original. If an attachment is unavailable or exists only on another computer, explain its provision history and the current access problem before requesting only what is needed. Do not guess contents because a record says “provided.”</p>
 <h3>If you are stuck</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>Situation</th>
 <th>Request</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Unsure which folder is open</td>
 <td><code>Please check the current path, remote, and whether AGENTS.md exists.</code></td>
 </tr>
@@ -512,44 +565,72 @@ restore only verifiable facts, and define the scope to resume.
 <td><code>Please find my record through the current branch and PR instead of choosing the newest file.</code></td>
 </tr>
 <tr>
-<td>Tests fail or zero tests run</td>
-<td><code>Please inspect the actual error and discovery path, then rerun the required checks.</code></td>
+<td>Tests fail, zero tests run, or checks are skipped</td>
+<td><code>Please record actual results and blockers and tell me the next action.</code></td>
 </tr>
 <tr>
 <td>Local checks pass but push fails</td>
-<td><code>Please distinguish local readiness from incomplete uploading and continue safe read-only plan review.</code></td>
+<td><code>Please distinguish local readiness from incomplete sharing and continue read-only plan review.</code></td>
 </tr>
 <tr>
 <td>Fetch fails</td>
 <td><code>Please pause new development and continue diagnosis, reading, and recording known facts.</code></td>
 </tr>
 <tr>
-<td>Closed before wrapping up</td>
-<td><code>Please compare Git changes with the last record and restore only verifiable facts.</code></td>
-</tr>
-<tr>
 <td>Previous attachment is inaccessible</td>
 <td><code>Please explain the access problem and which material is needed for this task.</code></td>
 </tr>
 <tr>
-<td>Another team/shared contract needs changes</td>
-<td><code>Please explain the impact, alternatives, verification, and required coordination or approval.</code></td>
+<td>Common-exception approval is pending</td>
+<td><code>Please pause only affected work and tell me what can continue under the current rules.</code></td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table>
 <h3>Next step: quick requests for when you work</h3>
-<p>Choose <strong>one start request</strong> for your team. These short requests ask Codex to read the currently applicable repository rules first.</p>
-<pre><code class="language-text">Part A: please check the repository start rules and my handoff, then tell me the next task.
+<p>Choose <strong>one start request</strong> for your team. The Korean aliases are listed in Section 04.</p>
+<pre><code class="language-text">Part A: please proceed.
 </code></pre>
-<pre><code class="language-text">Part B: please check the repository start rules and my handoff, then tell me the next task.
+<pre><code class="language-text">Part B: please proceed.
 </code></pre>
-<pre><code class="language-text">I would like to start with the Oracle·Reporter team. Please check the repository start rules and my handoff.
+<pre><code class="language-text">Please proceed with the Oracle·Reporter team.
 </code></pre>
-<p>Use <strong>chat/session wrap-up</strong> even when the feature is unfinished.</p>
-<pre><code class="language-text">I will stop here for today. Please record actual changes, tests, unfinished items, and idea choices, then give me one next action.
+<p>Use <strong>record-only wrap-up</strong> when you want to organize the record. If you explicitly gave the optional delegation in Section 09, sharing also proceeds within that task's authorized scope.</p>
+<pre><code class="language-text">Please read the current repository's AGENTS.md,
+03_프로젝트/00_공통/CODEX_개발협업.md, and
+03_프로젝트/91_개발작업기록/README.md first, then wrap up this work.
+Please compare actual Git changes with verifiable test results and create or update
+this task's record file. Please mark anything you cannot verify as 미확인 (unverified).
+Please give me the record link, sharing status, branch/PR/task ID, and next action.
 </code></pre>
-<p>Request <strong>uploading</strong> separately after reviewing what is public-safe.</p>
-<pre><code class="language-text">Please recheck the remote, commit and push only this task&#39;s publishable changes to my branch, and create a PR. Please verify the actual remote update as well.
+<p>Use this to request <strong>recording and sharing together</strong>:</p>
+<pre><code class="language-text">Please read the current repository's AGENTS.md,
+03_프로젝트/00_공통/CODEX_개발협업.md, and
+03_프로젝트/91_개발작업기록/README.md first, then wrap up and share this work.
+Please commit and push only this task's publishable changes and record, and update its PR.
+Please verify the actual remote SHA, files, and PR status,
+then give me the record link and the four wrap-up fields.
 </code></pre>
+<h4 id="W03-SUBMIT">Week 3 assignment submission · one report file</h4>
+
+<p>After working through environment preparation, plan review, a small task, recording, and resuming in a new chat, send the request below. Codex compares actual task records and creates the submission report. <strong>Students check that it matches the facts instead of filling out the template themselves.</strong> A, B, and Oracle·Reporter use the same template. You do not need to repeat completed steps solely to produce the report.</p>
+<p>The development repository's <code>03_프로젝트/00_공통/교육제출/3주차_제출보고서_템플릿.md</code> has a fixed bilingual title and seven sections in a fixed order. Codex preserves them and checks for missing required items. If the template cannot be found or read, it does not invent another format; it explains the reason and which repository or file needs checking. Use actual evidence for check results and sharing status. Mark work not done as 미실행 (not run) and information that cannot be verified as 미확인 (unverified). <strong>Report submission, environment readiness, and feature completion are checked separately.</strong> If blocked, keep the incomplete items and help needed in the report. You do not need to wait for a PR or main merge to write it.</p>
+<p>First, choose <strong>a submission folder outside the development repository</strong>. Give Codex its path in a private chat, then send the following request. If no folder is specified, Codex asks only where to save the file.</p>
+<pre><code class="language-text">Please first read the current repository's AGENTS.md,
+03_프로젝트/00_공통/CODEX_개발협업.md, and
+03_프로젝트/00_공통/교육제출/3주차_제출보고서_템플릿.md.
+Please compare actual task records, Git status, and verifiable check results.
+Please create a Week 3 submission report in Markdown using the template's title and section order.
+Include environment preparation, plan review, a small task, check results,
+recording/sharing/resuming, blockers, next actions, and evidence links.
+Please mark information you cannot verify as 미확인 (unverified), and work not done as 미실행 (not run).
+Do not reconstruct the original conversation. State that this is a summary of confirmed facts.
+Please exclude secrets, personal data, and unnecessary raw output, and check for missing required items.
+Please save it in the submission folder I specified outside the public repository.
+If I have not specified a folder, please ask only where to save it.
+Please give me the completed file link and incomplete items.
+</code></pre>
+<p>If sharing is available for the last work chat, check the shared view yourself and <strong>attach the actual share link to the report</strong>. If unavailable, record that status. Verify preparation or earlier work absent from that chat through accessible Git records; do not guess missing content. Do not treat a shared snapshot as a complete export of the original conversation or terminal/tool output. Refer to the <a href="https://learn.chatgpt.com/docs/use-chatgpt#share-a-read-only-snapshot-of-a-codex-thread">OpenAI sharing guide</a>.</p>
+<p><strong>What to submit:</strong> One <code>.md</code> report whose facts you have checked. Include the last chat link in the same file when available. Submit the report directly to the club president; do not upload the report or chat link to the public development repository or a PR. <strong>Submit to the club president via a personal KakaoTalk message by the end of October 24: October 25, 2026, 00:00 KST (UTC+09:00).</strong> This report request does not delegate commit, push, PR merging, or creating a chat share link. You do not need to submit a detailed full conversation copy or hidden reasoning.</p>
 <h2>Development references</h2>
 <p>When information differs, check the current repository rules and actual Git state first. If an old plan or record says A/B are undecided or assigned differently, show the difference from <strong>A=authentication bypass and B=XSS</strong> rather than silently combining versions.</p>
 <ul>
@@ -561,7 +642,7 @@ restore only verifiable facts, and define the scope to resume.
 <li><a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/00_%EA%B3%B5%ED%86%B5/%EA%B2%80%EC%A6%9D/README.md">Verification guide</a></li>
 <li><a href="https://github.com/rbtjd215/Impes_RedHarness/blob/main/03_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/91_%EA%B0%9C%EB%B0%9C%EC%9E%91%EC%97%85%EA%B8%B0%EB%A1%9D/README.md">Task records</a></li>
 </ul>
-<p><strong>After working through the guide:</strong> Did you get guidance for your own task in the correct project? Did the current required checks actually pass? Are local readiness, record upload, and PR status distinguished? Did your team choose a minimal adoption option? Is a wrap-up record linked to your branch/PR/task ID, with a next action?</p>
+<p><strong>After working through the guide:</strong> Did you get guidance for your own task in the correct project? Did the current required checks actually pass? Are local readiness, records, sharing, and PR status distinguished? Did your team choose a minimal adoption option? Is a record linked to your branch/PR/task ID, with the four wrap-up fields and a next action?</p>
 <footer class="footer">English · 2026-10-01 · <a href="#top">Back to top ↑</a></footer></main><script>
 document.querySelectorAll('pre').forEach((pre,index)=>{
 if(pre.textContent.startsWith('RedHarness_준비/')){pre.classList.add('folder-tree');pre.setAttribute('aria-label','Preparation folder and actual repository folder');return;}
